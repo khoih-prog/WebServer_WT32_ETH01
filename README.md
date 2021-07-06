@@ -2,7 +2,6 @@
 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01)
 [![GitHub release](https://img.shields.io/github/release/khoih-prog/WebServer_WT32_ETH01.svg)](https://github.com/khoih-prog/WebServer_WT32_ETH01/releases)
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/WebServer_WT32_ETH01.svg)](http://github.com/khoih-prog/WebServer_WT32_ETH01/issues)
 
