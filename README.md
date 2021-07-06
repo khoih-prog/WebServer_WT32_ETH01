@@ -151,7 +151,7 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 
 1. Install [VS Code](https://code.visualstudio.com/)
 2. Install [PlatformIO](https://platformio.org/platformio-ide)
-3. Install [**WebServer_WT32_ETH01** library](https://platformio.org/lib/show/xxxxx/WebServer_WT32_ETH01) by using [Library Manager](https://platformio.org/lib/show/xxxxx/WebServer_WT32_ETH01/installation). Search for WebServer_WT32_ETH01 in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
+3. Install [**WebServer_WT32_ETH01** library](https://platformio.org/lib/show/12512/WebServer_WT32_ETH01) by using [Library Manager](https://platformio.org/lib/show/12512/WebServer_WT32_ETH01/installation). Search for WebServer_WT32_ETH01 in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
 4. Use included [platformio.ini](platformio/platformio.ini) file from examples to ensure that all dependent libraries will installed automatically. Please visit documentation for the other options and examples at [Project Configuration File](https://docs.platformio.org/page/projectconf.html)
 
 ---
