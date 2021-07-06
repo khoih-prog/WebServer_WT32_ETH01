@@ -2,7 +2,7 @@
 
 [![arduino-library-badge](https://www.ardu-badge.com/badge/WebServer_WT32_ETH01.svg?)](https://www.ardu-badge.com/WebServer_WT32_ETH01)
 [![GitHub release](https://img.shields.io/github/release/khoih-prog/WebServer_WT32_ETH01.svg)](https://github.com/khoih-prog/WebServer_WT32_ETH01/releases)
-[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/LICENSE)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/WebServer_WT32_ETH01.svg)](http://github.com/khoih-prog/WebServer_WT32_ETH01/issues)
 
@@ -23,7 +23,7 @@
   * [Manual Install](#manual-install)
   * [VS Code & PlatformIO](#vs-code--platformio)
 * [Libraries' Patches](#libraries-patches)
-  * [1. For fixing ESP32 compile error](#7-for-fixing-esp32-compile-error)
+  * [1. For fixing ESP32 compile error](#1-for-fixing-esp32-compile-error)
 * [HOWTO Use analogRead() with ESP32 running WiFi and/or BlueTooth (BT/BLE)](#howto-use-analogread-with-esp32-running-wifi-andor-bluetooth-btble)
   * [1. ESP32 has 2 ADCs, named ADC1 and ADC2](#1--esp32-has-2-adcs-named-adc1-and-adc2)
   * [2. ESP32 ADCs functions](#2-esp32-adcs-functions)
@@ -60,7 +60,7 @@
     * [ 5. node_test_server](examples/HTTPClient/node_test_server)
 * [Example AdvancedWebServer](#example-advancedwebserver)
   * [File AdvancedWebServer.ino](#file-advancedwebserverino)
-* [Debug Terminal Output Samples](#debug-termimal-output-samples)
+* [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [ 1. AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720](#1-advancedwebserver-on-esp32_dev-with-eth_phy_lan8720)
   * [ 2. ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720](#2-esp32_fs_webserver-on-esp32_dev-with-eth_phy_lan8720)
   * [ 3. MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720](#3-mqtt_thingstream-on-esp32_dev-with-eth_phy_lan8720)
@@ -629,14 +629,14 @@ void loop()
 ---
 ---
 
-### Debug Termimal Output Samples
+### Debug Terminal Output Samples
 
 #### 1. AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
 
 The following are debug terminal output and screen shot when running example [AdvancedWebServer](examples/AdvancedWebServer) on ESP32_DEV with ETH_PHY_LAN8720 (WT32_ETH01)
 
 <p align="center">
-    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/master/pics/AdvancedWebServer.png">
+    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/pics/AdvancedWebServer.png">
 </p>
 
 ```
@@ -697,7 +697,7 @@ handleFileRead: /CanadaFlag_1.png
 and the screen shot of the WebServer
 
 <p align="center">
-    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/master/pics/ESP32_FS_EthernetWebServer.png">
+    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/pics/ESP32_FS_EthernetWebServer.png">
 </p>
 
 ---
@@ -1057,7 +1057,7 @@ If you want to contribute to this project:
 
 ### License
 
-- The library is licensed under [GPLv3](https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/master/LICENSE)
+- The library is licensed under [GPLv3](https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/LICENSE)
 
 ---
 
