@@ -1,0 +1,30 @@
+{
+  "name": "WebServer_WT32_ETH01",
+  "version": "1.0.0",
+  "keywords": "WebServer, Ethernet, Arduino, ESP32, LAN8720, WT32-ETH01, HTTP-Client, WebSocket-Client, server, client, websocket, LittleFS, SPIFFS",
+  "description": "Simple Ethernet WebServer, HTTP Client wrapper library for WT32_ETH01 boards using LAN8720 Ethernet. The WebServer supports HTTP GET and POST requests, provides argument parsing, handles one client at a time. It provides HTTP Client and supports WebServer serving from LittleFS/SPIFFS.",
+  "authors":
+  {
+    "name":  "Khoi Hoang",
+    "url":   "https://github.com/khoih-prog",
+    "maintainer": true
+  },  
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/khoih-prog/WebServer_WT32_ETH01"
+  },
+  "homepage": "https://github.com/khoih-prog/WebServer_WT32_ETH01",
+  "export": {
+    "exclude": [
+      "linux",
+      "extras",
+      "tests"
+    ]
+  },
+  "dependencies":
+  [],
+  "frameworks": "*",
+  "platforms": "espressif32",
+  "examples": "examples/*/*/*.ino"
+}
