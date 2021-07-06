@@ -702,7 +702,7 @@ and the screen shot of the WebServer
 
 ---
 
-#### 3. MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720 on ESP32_DEV with ETH_PHY_LAN8720
+#### 3. MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
 
 The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](examples/MQTT_ThingStream)
 
