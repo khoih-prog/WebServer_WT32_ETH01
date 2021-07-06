@@ -49,7 +49,7 @@
     * [12. WebClient](examples/WebClient)
     * [13. WebClientRepeating](examples/WebClientRepeating)
     * [14. WebServer](examples/WebServer)
-    * [15. **ESP32_FS_WebServer**](examples/ESP32_FS_WebServer)
+    * [15. **ESP32_FS_EthernetWebServer**](examples/ESP32_FS_EthernetWebServer)
     * [16. **serveStatic**](examples/serveStatic)
     * [17. **serveStaticLoadFile**](examples/serveStaticLoadFile)
   * [HTTPClient Examples](#httpclient-examples)
@@ -62,7 +62,7 @@
   * [File AdvancedWebServer.ino](#file-advancedwebserverino)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
   * [ 1. AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720](#1-advancedwebserver-on-esp32_dev-with-eth_phy_lan8720)
-  * [ 2. ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720](#2-esp32_fs_webserver-on-esp32_dev-with-eth_phy_lan8720)
+  * [ 2. ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720](#2-esp32_fs_ethernetwebserver-on-esp32_dev-with-eth_phy_lan8720)
   * [ 3. MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720](#3-mqtt_thingstream-on-esp32_dev-with-eth_phy_lan8720)
   * [ 4. MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720](#4-mqttclient_auth-on-esp32_dev-with-eth_phy_lan8720)
   * [ 5. MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720](#5-mqttclient_basic-on-esp32_dev-with-eth_phy_lan8720)
@@ -381,7 +381,7 @@ Example:
 12. [WebClient](examples/WebClient)
 13. [WebClientRepeating](examples/WebClientRepeating)
 14. [WebServer](examples/WebServer)
-15. [**ESP32_FS_WebServer**](examples/ESP32_FS_WebServer).
+15. [**ESP32_FS_EthernetWebServer**](examples/ESP32_FS_EthernetWebServer).
 16. [**serveStatic**](examples/serveStatic).
 17. [**serveStaticLoadFile**](examples/serveStaticLoadFile).
 
