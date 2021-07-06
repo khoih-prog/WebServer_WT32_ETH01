@@ -7,7 +7,7 @@
   Based on and modified from ESP8266 https://github.com/esp8266/Arduino/releases
   Built by Khoi Hoang https://github.com/khoih-prog/WebServer_WT32_ETH01
   Licensed under MIT license
-  Version: 1.0.0
+  Version: 1.1.0
 
   Original author:
   @file       Esp8266WebServer.h
@@ -16,6 +16,7 @@
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
   1.0.0   K Hoang      05/07/2021 Initial coding for WT32_ETH01 (ESP32 + LAN8720)
+  1.1.0   K Hoang      06/07/2021 Add Add SSL support and HTTPS, MQTTS examples
  *****************************************************************************************************************************/
 
 #pragma once
@@ -23,7 +24,7 @@
 #ifndef WEBSERVER_WT32_ETH01_H
 #define WEBSERVER_WT32_ETH01_H
 
-#define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.0.0"
+#define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.1.0"
 
 #if ESP32
   #warning Using ESP32 architecture for WebServer_WT32_ETH01

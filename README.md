@@ -15,6 +15,7 @@
   * [Features](#features)
   * [Currently supported Boards](#currently-supported-boards)
 * [Changelog](#changelog)
+  * [Releases v1.1.0](#releases-v110)
   * [Releases v1.0.0](#releases-v100)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
@@ -57,6 +58,13 @@
     * [ 3. BasicHttpsClient](examples/HTTPClient/BasicHttpsClient)
     * [ 4. StreamHttpClient](examples/HTTPClient/StreamHttpClient)
     * [ 5. node_test_server](examples/HTTPClient/node_test_server)
+  * [HTTPS and MQTTS Examples](#https-and-mqtts-examples)
+    * [ 1. MQTTClient_SSL](examples/SSL/MQTTClient_SSL)
+    * [ 2. MQTTClient_SSL_Auth](examples/SSL/MQTTClient_SSL_Auth)
+    * [ 3. MQTTClient_SSL_Complex](examples/SSL/MQTTClient_SSL_Complex)
+    * [ 4. MQTTS_ThingStream](examples/SSL/MQTTS_ThingStream)
+    * [ 5. WebClientMulti_SSL](examples/SSL/WebClientMulti_SSL)
+    * [ 6. WebClient_SSL](examples/SSL/WebClient_SSL)
 * [Example AdvancedWebServer](#example-advancedwebserver)
   * [File AdvancedWebServer.ino](#file-advancedwebserverino)
 * [Debug Terminal Output Samples](#debug-terminal-output-samples)
@@ -69,6 +77,11 @@
   * [ 7. UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720](#7-udpntpclient-on-esp32_dev-with-eth_phy_lan8720)
   * [ 8. BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720](#8-basichttpclient-on-esp32_dev-with-eth_phy_lan8720)
   * [ 9. BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720](#9-basichttpsclient-on-esp32_dev-with-eth_phy_lan8720)
+  * [10. WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720](#10-webclientmulti_ssl-on-esp32_dev-with-eth_phy_lan8720)
+  * [11. MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720](#11-mqttclient_ssl_complex-on-esp32_dev-with-eth_phy_lan8720)
+  * [12. MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720](#12-mqtts_thingstream-on-esp32_dev-with-eth_phy_lan8720)
+  * [13. MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720](#13-mqttclient_ssl-on-esp32_dev-with-eth_phy_lan8720)
+  * [14. MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720](#14-mqttclient_ssl_auth-on-esp32_dev-with-eth_phy_lan8720)
 * [Debug](#debug)
 * [Troubleshooting](#troubleshooting)
 * [Releases](#releases)
@@ -90,15 +103,15 @@
 
 This [**WebServer_WT32_ETH01 library**](https://github.com/khoih-prog/WebServer_WT32_ETH01) is a simple yet complete WebServer wrapper library for **ESP32-based WT32_ETH01** boards using LAN8720 Ethernet. The functions are similar and compatible to those of [`ESP32 WebServer`](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer) and [`ESP8266WebServer`](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer) libraries to make life much easier to port sketches from ESP8266/ESP32.
 
-This [**WebServer_WT32_ETH01 library**](https://github.com/khoih-prog/WebServer_WT32_ETH01) also provides high-level **HTTP and WebSocket Client** by using the functions from ESP32's [**HTTPClient Library**](https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient)
+This [**WebServer_WT32_ETH01 library**](https://github.com/khoih-prog/WebServer_WT32_ETH01) also provides high-level **HTTP(S), MQTT(S) and WebSockets Client** by using the functions from ESP32's [**HTTPClient Library**](https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient)
 
 The library provides these features:
 
 1. TCP Server and Client
 2. UDP Server and Client
-3. HTTP Server and Client
-4. HTTP GET and POST requests, provides argument parsing, handles one client at a time.
-5. **High-level HTTP (GET, POST, PUT, PATCH, DELETE) and WebSocket Client**.
+3. HTTP(S) Server and Client
+4. HTTP(S) GET and POST requests, provides argument parsing, handles one client at a time.
+5. **High-level HTTP(S) (GET, POST, PUT, PATCH, DELETE), MQTT(S) and WebSocket Client**.
 
 Library is just a wrapper for:
 
@@ -110,12 +123,17 @@ Library is just a wrapper for:
 
 This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_WT32_ETH01) currently supports these following boards:
 
- 1. **WT32_ETH01 boards** using ESP32 and LAN8720 Ethernet
+ 1. **WT32_ETH01 boards** using ESP32-based boards and LAN8720 Ethernet
 
 ---
 ---
 
 ## Changelog
+
+#### Releases v1.1.0
+
+1. Add SSL support
+2. Add HTTPS and MQTTS examples
 
 #### Releases v1.0.0
 
@@ -392,7 +410,15 @@ Example:
  4. [StreamHttpClient](examples/HTTPClient/StreamHttpClient)
  5. [node_test_server](examples/HTTPClient/node_test_server)
 
+#### HTTPS and MQTTS Examples
 
+ 1. [MQTTClient_SSL](examples/SSL/MQTTClient_SSL)
+ 2. [MQTTClient_SSL_Auth](examples/SSL/MQTTClient_SSL_Auth)
+ 3. [MQTTClient_SSL_Complex](examples/SSL/MQTTClient_SSL_Complex)
+ 4. [MQTTS_ThingStream](examples/SSL/MQTTS_ThingStream)
+ 5. [WebClientMulti_SSL](examples/SSL/WebClientMulti_SSL)
+ 6. [WebClient_SSL](examples/SSL/WebClient_SSL)
+ 
 ---
 ---
 
@@ -640,7 +666,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```
 Starting AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 
 ETH Started
 ETH Connected
@@ -658,7 +684,7 @@ The terminal output of **WT32_ETH01** running [ESP32_FS_EthernetWebServer](examp
 
 ```cpp
 Starting ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 
 ETH Started
 ETH Connected
@@ -708,7 +734,7 @@ The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](example
 
 ```
 Starting MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 ***************************************
 esp32-sniffer/12345678/ble
@@ -732,7 +758,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Auth example](examples
 
 ```
 Starting MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Auth on WT32-ETH01 with ETH_PHY_LAN8720
@@ -749,7 +775,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Basic example](example
 
 ```
 Starting MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Basic on WT32-ETH01 with ETH_PHY_LAN8720
@@ -769,7 +795,7 @@ The terminal output of **WT32_ETH01** running [WebClient example](examples/WebCl
 
 ```
 Starting WebClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 
 Starting connection to server...
@@ -837,7 +863,7 @@ The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/Ud
 
 ```
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 UDP Packet received, size 48
 From 132.163.97.1, port 123
@@ -866,7 +892,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpClient example](examples
 
 ```
 Starting BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 [HTTP] begin...
 [HTTP] GET...
@@ -921,7 +947,6 @@ ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 
 ---
 
-
 #### 9. BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
 
 The terminal output of **WT32_ETH01** running [BasicHttpsClient example](examples/HTTPClient/BasicHttpsClient)
@@ -929,7 +954,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpsClient example](example
 
 ```
 Starting BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.0.0
+WebServer_WT32_ETH01 v1.1.0
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 05:29:39 2021
@@ -965,7 +990,217 @@ If you're getting this page through a proxy, you should <I>not</I> see the
 Waiting 10s before the next round...
 ```
 
+---
 
+#### 10. WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
+
+The terminal output of **WT32_ETH01** running [WebClientMulti_SSL example](examples/SSL/WebClientMulti_SSL)
+
+
+```
+Starting WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.1.0
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+Waiting for NTP time sync: .
+Current time: Tue Jul  6 19:58:27 2021
+Connecting to www.arduino.cc...
+Took: 2312
+HTTP/1.1 200 OK
+Date: Tue, 06 Jul 2021 19:58:31 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: close
+Last-Modified: Wed, 02 Oct 2013 13:46:47 GMT
+Vary: Accept-Encoding
+Strict-Transport-Security: max-age=500; includeSubDomains
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+CF-Cache-Status: DYNAMIC
+Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+Server: cloudflare
+CF-RAY: 66ab6888bbc63fd9-YYZ
+alt-svc: h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443"; ma=86400, h3=":443"; ma=86400
+
+8d7
+
+           `:;;;,`                      .:;;:.           
+        .;;;;;;;;;;;`                :;;;;;;;;;;:     TM 
+      `;;;;;;;;;;;;;;;`            :;;;;;;;;;;;;;;;      
+     :;;;;;;;;;;;;;;;;;;         `;;;;;;;;;;;;;;;;;;     
+    ;;;;;;;;;;;;;;;;;;;;;       .;;;;;;;;;;;;;;;;;;;;    
+   ;;;;;;;;:`   `;;;;;;;;;     ,;;;;;;;;.`   .;;;;;;;;   
+  .;;;;;;,         :;;;;;;;   .;;;;;;;          ;;;;;;;  
+  ;;;;;;             ;;;;;;;  ;;;;;;,            ;;;;;;. 
+ ,;;;;;               ;;;;;;.;;;;;;`              ;;;;;; 
+ ;;;;;.                ;;;;;;;;;;;`      ```       ;;;;;`
+ ;;;;;                  ;;;;;;;;;,       ;;;       .;;;;;
+`;;;;:                  `;;;;;;;;        ;;;        ;;;;;
+,;;;;`    `,,,,,,,,      ;;;;;;;      .,,;;;,,,     ;;;;;
+:;;;;`    .;;;;;;;;       ;;;;;,      :;;;;;;;;     ;;;;;
+:;;;;`    .;;;;;;;;      `;;;;;;      :;;;;;;;;     ;;;;;
+.;;;;.                   ;;;;;;;.        ;;;        ;;;;;
+ ;;;;;                  ;;;;;;;;;        ;;;        ;;;;;
+ ;;;;;                 .;;;;;;;;;;       ;;;       ;;;;;,
+ ;;;;;;               `;;;;;;;;;;;;                ;;;;; 
+ `;;;;;,             .;;;;;; ;;;;;;;              ;;;;;; 
+  ;;;;;;:           :;;;;;;.  ;;;;;;;            ;;;;;;  
+   ;;;;;;;`       .;;;;;;;,    ;;;;;;;;        ;;;;;;;:  
+    ;;;;;;;;;:,:;;;;;;;;;:      ;;;;;;;;;;:,;;;;;;;;;;   
+    `;;;;;;;;;;;;;;;;;;;.        ;;;;;;;;;;;;;;;;;;;;    
+      ;;;;;;;;;;;;;;;;;           :;;;;;;;;;;;;;;;;:     
+       ,;;;;;;;;;;;;;,              ;;;;;;;;;;;;;;       
+         .;;;;;;;;;`                  ,;;;;;;;;:         
+                                                         
+                                                         
+                                                         
+                                                         
+    ;;;   ;;;;;`  ;;;;:  .;;  ;; ,;;;;;, ;;. `;,  ;;;;   
+    ;;;   ;;:;;;  ;;;;;; .;;  ;; ,;;;;;: ;;; `;, ;;;:;;  
+   ,;:;   ;;  ;;  ;;  ;; .;;  ;;   ,;,   ;;;,`;, ;;  ;;  
+   ;; ;:  ;;  ;;  ;;  ;; .;;  ;;   ,;,   ;;;;`;, ;;  ;;. 
+   ;: ;;  ;;;;;:  ;;  ;; .;;  ;;   ,;,   ;;`;;;, ;;  ;;` 
+  ,;;;;;  ;;`;;   ;;  ;; .;;  ;;   ,;,   ;; ;;;, ;;  ;;  
+  ;;  ,;, ;; .;;  ;;;;;:  ;;;;;: ,;;;;;: ;;  ;;, ;;;;;;  
+  ;;   ;; ;;  ;;` ;;;;.   `;;;:  ,;;;;;, ;;  ;;,  ;;;;   
+
+0
+
+LoopCount 1, Received 2876 bytes
+Disconnecting.
+Connecting to www.cloudflare.com...
+Took: 2249
+HTTP/1.1 200 OK
+Date: Tue, 06 Jul 2021 19:58:54 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: close
+Access-Control-Allow-Origin: *
+Server: cloudflare
+CF-RAY: 66ab6913cedb3ff1-YYZ
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Expires: Thu, 01 Jan 1970 00:00:01 GMT
+Cache-Control: no-cache
+
+ba
+fl=29f93
+h=www.cloudflare.com
+ip=45.72.193.56
+ts=1625601534.066
+visit_scheme=https
+uag=SSLClientOverEthernet
+colo=YYZ
+http=http/1.1
+loc=CA
+tls=TLSv1.2
+sni=plaintext
+warp=off
+gateway=off
+
+0
+
+LoopCount 2, Received 529 bytes
+Disconnecting.
+
+```
+
+---
+
+#### 11. MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
+
+The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Complex example](examples/SSL/MQTTClient_SSL_Complex)
+
+
+```
+Starting MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.1.0
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+Waiting for NTP time sync: .
+Current time: Tue Jul  6 18:14:02 2021
+Attempting MQTT connection to broker.emqx.io...connected
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Complex on WT32-ETH01, millis = 5718
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Complex on WT32-ETH01, millis = 5718
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Complex on WT32-ETH01, millis = 10719
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Complex on WT32-ETH01, millis = 10719
+```
+
+---
+
+#### 12. MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
+
+The terminal output of **WT32_ETH01** running [MQTTS_ThingStream example](examples/SSL/MQTTS_ThingStream)
+
+
+```
+Starting MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.1.0
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+Waiting for NTP time sync: .
+Current time: Tue Jul  6 18:38:22 2021
+***************************************
+esp32-sniffer/12345678/ble
+***************************************
+Attempting MQTT connection to mqtt.thingstream.io
+...connected
+Published connection message successfully!
+Subcribed to: esp32-sniffer/12345678/ble
+MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
+MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
+MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
+MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
+```
+
+---
+
+#### 13. MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
+
+The terminal output of **WT32_ETH01** running [MQTTClient_SSL example](examples/SSL/MQTTClient_SSL)
+
+
+```
+Starting MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.1.0
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+Waiting for NTP time sync: .
+Current time: Tue Jul  6 17:11:00 2021
+Attempting MQTTS connection to broker.emqx.io...connected
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
+```
+
+---
+
+#### 14. MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
+
+The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Auth example](examples/SSL/MQTTClient_SSL_Auth)
+
+```
+Starting MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
+WebServer_WT32_ETH01 v1.1.0
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+Waiting for NTP time sync: .
+Current time: Tue Jul  6 18:05:14 2021
+Attempting MQTTS connection to broker.emqx.io...connected
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message Send : MQTT_Pub => Hello from MQTTClient_SSL_Auth on WT32-ETH01
+Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Auth on WT32-ETH01
+
+```
 ---
 ---
 
@@ -992,6 +1227,11 @@ If you get compilation errors, more often than not, you may need to install a ne
 
 ## Releases
 
+#### Releases v1.1.0
+
+1. Add SSL support
+2. Add HTTPS and MQTTS examples
+
 #### Releases v1.0.0
 
 1. Initial coding to support WT32_ETH01 boards
@@ -1002,7 +1242,7 @@ If you get compilation errors, more often than not, you may need to install a ne
 
 This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_WT32_ETH01) currently supports these following boards:
 
- 1. **WT32_ETH01 boards** using ESP32 and LAN8720 Ethernet
+ 1. **WT32_ETH01 boards** using ESP32-based boards and LAN8720 Ethernet
  
 ---
 ---
@@ -1020,7 +1260,8 @@ Submit issues to: [WebServer_WT32_ETH01 issues](https://github.com/khoih-prog/We
 ### DONE
 
  1. Add support to ESP32-based **WT32_ETH01** using LAN8720 Ethernet
-
+ 2. Add SSL support
+ 3. Add HTTPS and MQTTS examples
 
 ---
 ---
