@@ -12,12 +12,10 @@
 
 
 * [Why do we need this WebServer_WT32_ETH01 library](#why-do-we-need-this-webserver_wt32_eth01-library)
+  * [Important notes](#Important-notes)
   * [Features](#features)
   * [Currently supported Boards](#currently-supported-boards)
-* [Changelog](#changelog)
-  * [Releases v1.2.0](#releases-v120)
-  * [Releases v1.1.0](#releases-v110)
-  * [Releases v1.0.0](#releases-v100)
+* [Changelog](changelog.md)
 * [Prerequisites](#prerequisites)
 * [Installation](#installation)
   * [Use Arduino Library Manager](#use-arduino-library-manager)
@@ -100,6 +98,23 @@
 
 ### Why do we need this [WebServer_WT32_ETH01 library](https://github.com/khoih-prog/WebServer_WT32_ETH01)
 
+#### Important notes
+
+ESP32 Core v2.0.0 introduces new enum breaking almost all `WT32_ETH01` codes written for core v1.0.6-.
+
+It's really strange to define a breaking enum `arduino_event_id_t` in [**WiFiGeneric.h**#L36-L78](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFiGeneric.h#L36-L78), compared to the old `system_event_id_t`, now placed in [**esp_event_legacy.h**#L29-L63](https://github.com/espressif/arduino-esp32/blob/master/tools/sdk/esp32/include/esp_event/include/esp_event_legacy.h#L29-L63)
+
+It's better to preserve the old enum order and just adding new items **to do no harm to pre-2.0.0 codes**
+
+- Releases v1.2.0 to be used for EP32 core v1.0.6- only
+- Releases v1.3.0 can be used for either EP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
+
+To use with core v1.0.6-, just define in your sketch
+
+```
+#define USING_CORE_ESP32_CORE_V200_PLUS       false
+```
+
 #### Features
 
 This [**WebServer_WT32_ETH01 library**](https://github.com/khoih-prog/WebServer_WT32_ETH01) is a simple yet complete WebServer wrapper library for **ESP32-based WT32_ETH01** boards using LAN8720 Ethernet. The functions are similar and compatible to those of [`ESP32 WebServer`](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer) and [`ESP8266WebServer`](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer) libraries to make life much easier to port sketches from ESP8266/ESP32.
@@ -129,31 +144,15 @@ This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_
 ---
 ---
 
-## Changelog
 
-#### Releases v1.2.0
-
-1. Add common code to library
-2. Renew examples
-
-#### Releases v1.1.0
-
-1. Add SSL support
-2. Add HTTPS and MQTTS examples
-
-#### Releases v1.0.0
-
-1. Initial coding to support WT32_ETH01 boards
-
-
----
----
 
 ## Prerequisites
 
- 1. [`Arduino IDE 1.8.15+` for Arduino](https://www.arduino.cc/en/Main/Software)
- 2. [`ESP32 Core 1.0.6+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 1. [`Arduino IDE 1.8.16+` for Arduino](https://www.arduino.cc/en/Main/Software)
+ 2. [`ESP32 Core 2.0.0+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based boards using release v1.2.0- [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
 
+---
 ---
 
 ## Installation
@@ -672,7 +671,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```
 Starting AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -690,7 +689,7 @@ The terminal output of **WT32_ETH01** running [ESP32_FS_EthernetWebServer](examp
 
 ```cpp
 Starting ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -740,7 +739,7 @@ The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](example
 
 ```
 Starting MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 ***************************************
 esp32-sniffer/12345678/ble
@@ -764,7 +763,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Auth example](examples
 
 ```
 Starting MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Auth on WT32-ETH01 with ETH_PHY_LAN8720
@@ -781,7 +780,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Basic example](example
 
 ```
 Starting MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Basic on WT32-ETH01 with ETH_PHY_LAN8720
@@ -801,7 +800,7 @@ The terminal output of **WT32_ETH01** running [WebClient example](examples/WebCl
 
 ```
 Starting WebClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 
 Starting connection to server...
@@ -869,7 +868,7 @@ The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/Ud
 
 ```
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 UDP Packet received, size 48
 From 132.163.97.1, port 123
@@ -898,7 +897,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpClient example](examples
 
 ```
 Starting BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 [HTTP] begin...
 [HTTP] GET...
@@ -960,7 +959,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpsClient example](example
 
 ```
 Starting BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 05:29:39 2021
@@ -1005,7 +1004,7 @@ The terminal output of **WT32_ETH01** running [WebClientMulti_SSL example](examp
 
 ```
 Starting WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 19:58:27 2021
@@ -1119,7 +1118,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Complex example](e
 
 ```
 Starting MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:14:02 2021
@@ -1139,7 +1138,7 @@ The terminal output of **WT32_ETH01** running [MQTTS_ThingStream example](exampl
 
 ```
 Starting MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:38:22 2021
@@ -1165,7 +1164,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL example](examples/
 
 ```
 Starting MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 17:11:00 2021
@@ -1190,7 +1189,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Auth example](exam
 
 ```
 Starting MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.2.0
+WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:05:14 2021
@@ -1231,32 +1230,6 @@ If you get compilation errors, more often than not, you may need to install a ne
 ---
 ---
 
-## Releases
-
-#### Releases v1.2.0
-
-1. Add common code to library
-2. Renew examples
-
-#### Releases v1.1.0
-
-1. Add SSL support
-2. Add HTTPS and MQTTS examples
-
-#### Releases v1.0.0
-
-1. Initial coding to support WT32_ETH01 boards
-
----
-
-#### Supported Boards
-
-This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_WT32_ETH01) currently supports these following boards:
-
- 1. **WT32_ETH01 boards** using ESP32-based boards and LAN8720 Ethernet
- 
----
----
 
 ### Issues ###
 
@@ -1273,6 +1246,7 @@ Submit issues to: [WebServer_WT32_ETH01 issues](https://github.com/khoih-prog/We
  1. Add support to ESP32-based **WT32_ETH01** using LAN8720 Ethernet
  2. Add SSL support
  3. Add HTTPS and MQTTS examples
+ 4. Support breaking ESP32 core v2.0.0+ as well as v1.0.6-
 
 ---
 ---
