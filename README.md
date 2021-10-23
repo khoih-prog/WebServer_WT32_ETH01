@@ -106,8 +106,8 @@ It's really strange to define a breaking enum `arduino_event_id_t` in [**WiFiGen
 
 It's better to preserve the old enum order and just adding new items **to do no harm to pre-2.0.0 codes**
 
-- Releases v1.2.0 to be used for EP32 core v1.0.6- only
-- Releases v1.3.0 can be used for either EP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
+- Releases v1.2.0- to be used for EP32 core v1.0.6- only
+- Releases v1.3.0+ can be used for either EP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
 
 To use with core v1.0.6-, just define in your sketch
 
@@ -437,6 +437,9 @@ Example:
 
 // Debug Level from 0 to 4
 #define _ETHERNET_WEBSERVER_LOGLEVEL_       3
+
+// Uncomment to use ESP32 core v1.0.6-
+//#define USING_CORE_ESP32_CORE_V200_PLUS     false
 
 #include <WebServer_WT32_ETH01.h>
 
