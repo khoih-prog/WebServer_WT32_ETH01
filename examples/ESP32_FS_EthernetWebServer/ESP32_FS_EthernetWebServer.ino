@@ -27,9 +27,6 @@
 // Debug Level from 0 to 4
 #define _ETHERNET_WEBSERVER_LOGLEVEL_       3
 
-// Uncomment to use ESP32 core v1.0.6-
-//#define USING_CORE_ESP32_CORE_V200_PLUS     false
-
 #define USE_LITTLEFS                true
 #define USE_SPIFFS                  false
 
@@ -38,16 +35,28 @@
 //LittleFS has higher priority
 #include "FS.h"
 
-// The library will be depreciated after being merged to future major Arduino esp32 core release 2.x
-// At that time, just remove this library inclusion
-#include <LITTLEFS.h>             // https://github.com/lorol/LITTLEFS
-
-FS* filesystem =          &LITTLEFS;
-#define CurrentFileFS     "LittleFS"
-#define FileFS            LITTLEFS
+// Check cores/esp32/esp_arduino_version.h and cores/esp32/core_version.h
+//#if ( ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(2, 0, 0) )  //(ESP_ARDUINO_VERSION_MAJOR >= 2)
+#if ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) )
+  #warning Using ESP32 Core 1.0.6 or 2.0.0+
+  // The library has been merged into esp32 core from release 1.0.6
+  #include <LittleFS.h>
+  
+  FS* filesystem =            &LittleFS;
+  #define FileFS              LittleFS
+  #define CurrentFileFS       "LittleFS"
+#else
+  #warning Using ESP32 Core 1.0.5-. You must install LITTLEFS library
+  // The library has been merged into esp32 core from release 1.0.6
+  #include <LITTLEFS.h>             // https://github.com/lorol/LITTLEFS
+  
+  FS* filesystem =            &LITTLEFS;
+  #define FileFS              LITTLEFS
+  #define CurrentFileFS       "LittleFS"
+#endif
 
 #ifdef USE_SPIFFS
-#undef USE_SPIFFS
+  #undef USE_SPIFFS
 #endif
 
 #define USE_SPIFFS                  false

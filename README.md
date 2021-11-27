@@ -106,8 +106,9 @@ It's really strange to define a breaking enum `arduino_event_id_t` in [**WiFiGen
 
 It's better to preserve the old enum order and just adding new items **to do no harm to pre-2.0.0 codes**
 
-- Releases v1.2.0- to be used for EP32 core v1.0.6- only
-- Releases v1.3.0+ can be used for either EP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
+- Releases v1.2.0- to be used for ESP32 core v1.0.6- only
+- Releases v1.3.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
+- Releases v1.4.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Autodetect core**
 
 To use with core v1.0.6-, just define in your sketch
 
@@ -149,8 +150,8 @@ This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.16+` for Arduino](https://www.arduino.cc/en/Main/Software)
- 2. [`ESP32 Core 2.0.0+`](https://github.com/espressif/arduino-esp32) for ESP32-based boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
- 2. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based boards using release v1.2.0- [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 2.0.1+`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 3. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.2.0- [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
 
 ---
 ---
@@ -438,9 +439,6 @@ Example:
 // Debug Level from 0 to 4
 #define _ETHERNET_WEBSERVER_LOGLEVEL_       3
 
-// Uncomment to use ESP32 core v1.0.6-
-//#define USING_CORE_ESP32_CORE_V200_PLUS     false
-
 #include <WebServer_WT32_ETH01.h>
 
 WebServer server(80);
@@ -674,7 +672,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```
 Starting AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -692,7 +690,7 @@ The terminal output of **WT32_ETH01** running [ESP32_FS_EthernetWebServer](examp
 
 ```cpp
 Starting ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -742,7 +740,7 @@ The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](example
 
 ```
 Starting MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 ***************************************
 esp32-sniffer/12345678/ble
@@ -766,7 +764,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Auth example](examples
 
 ```
 Starting MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Auth on WT32-ETH01 with ETH_PHY_LAN8720
@@ -783,7 +781,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Basic example](example
 
 ```
 Starting MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Basic on WT32-ETH01 with ETH_PHY_LAN8720
@@ -803,7 +801,7 @@ The terminal output of **WT32_ETH01** running [WebClient example](examples/WebCl
 
 ```
 Starting WebClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 
 Starting connection to server...
@@ -871,7 +869,7 @@ The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/Ud
 
 ```
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 UDP Packet received, size 48
 From 132.163.97.1, port 123
@@ -900,7 +898,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpClient example](examples
 
 ```
 Starting BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 [HTTP] begin...
 [HTTP] GET...
@@ -962,7 +960,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpsClient example](example
 
 ```
 Starting BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 05:29:39 2021
@@ -1007,7 +1005,7 @@ The terminal output of **WT32_ETH01** running [WebClientMulti_SSL example](examp
 
 ```
 Starting WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 19:58:27 2021
@@ -1121,7 +1119,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Complex example](e
 
 ```
 Starting MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:14:02 2021
@@ -1141,7 +1139,7 @@ The terminal output of **WT32_ETH01** running [MQTTS_ThingStream example](exampl
 
 ```
 Starting MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:38:22 2021
@@ -1167,7 +1165,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL example](examples/
 
 ```
 Starting MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 17:11:00 2021
@@ -1192,7 +1190,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Auth example](exam
 
 ```
 Starting MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.3.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:05:14 2021
@@ -1250,6 +1248,7 @@ Submit issues to: [WebServer_WT32_ETH01 issues](https://github.com/khoih-prog/We
  2. Add SSL support
  3. Add HTTPS and MQTTS examples
  4. Support breaking ESP32 core v2.0.0+ as well as v1.0.6-
+ 5. Auto detect ESP32 core v1.0.6- or v2.0.0+ to use correct settings
 
 ---
 ---

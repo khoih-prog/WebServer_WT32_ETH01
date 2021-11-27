@@ -37,9 +37,6 @@
 // Debug Level from 0 to 4
 #define _ETHERNET_WEBSERVER_LOGLEVEL_       3
 
-// Uncomment to use ESP32 core v1.0.6-
-//#define USING_CORE_ESP32_CORE_V200_PLUS     false
-
 #define USE_LITTLEFS                true
 #define USE_SPIFFS                  false
 

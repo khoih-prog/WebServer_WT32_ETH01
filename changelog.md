@@ -12,6 +12,7 @@
 
 
 * [Changelog](#changelog)
+  * [Releases v1.4.0](#releases-v140)
   * [Releases v1.3.0](#releases-v130)
   * [Releases v1.2.0](#releases-v120)
   * [Releases v1.1.0](#releases-v110)
@@ -22,9 +23,16 @@
 
 ## Changelog
 
+#### Releases v1.4.0
+
+##### Warning: Releases v1.4.0+ can be used and autodetect ESP32 core v2.0.0+ or v1.0.6-.
+
+1. Auto detect ESP32 core
+2. Renew examples
+
 #### Releases v1.3.0
 
-##### Warning: Can be used for either EP32 core v2.0.0+ or v1.0.6-. Default is v2.0.0+ now
+##### Warning: Releases v1.3.0+ can be used for either ESP32 core v2.0.0+ or v1.0.6-. Default is v2.0.0+ now
 
 1. Making compatible either with breaking core v2.0.0+ or core v1.0.6-
 2. Renew examples
@@ -32,7 +40,7 @@
 
 #### Releases v1.2.0
 
-##### Warning: To be used for EP32 core v1.0.6- only
+##### Warning: Releases v1.2.0- to be used for ESP32 core v1.0.6- only
 
 1. Add common code to library
 2. Renew examples
