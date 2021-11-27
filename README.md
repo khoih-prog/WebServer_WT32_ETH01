@@ -108,13 +108,15 @@ It's better to preserve the old enum order and just adding new items **to do no 
 
 - Releases v1.2.0- to be used for ESP32 core v1.0.6- only
 - Releases v1.3.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
-- Releases v1.4.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Autodetect core**
 
 To use with core v1.0.6-, just define in your sketch
 
 ```
 #define USING_CORE_ESP32_CORE_V200_PLUS       false
 ```
+
+- Releases v1.4.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Autodetect core**
+
 
 #### Features
 
@@ -185,7 +187,7 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 
 #### 1. For fixing ESP32 compile error
 
-To fix [`ESP32 compile error`](https://github.com/espressif/arduino-esp32), just copy the following file into the [`ESP32`](https://github.com/espressif/arduino-esp32) cores/esp32 directory (e.g. ./arduino-1.8.13/hardware/espressif/cores/esp32) to overwrite the old file:
+To fix [`ESP32 compile error`](https://github.com/espressif/arduino-esp32), just copy the following file into the [`ESP32`](https://github.com/espressif/arduino-esp32) cores/esp32 directory (e.g. ./arduino-1.8.16/hardware/espressif/cores/esp32) to overwrite the old file:
 - [Server.h](LibraryPatches/esp32/cores/esp32/Server.h)
 
 
