@@ -37,13 +37,13 @@
     #warning Using code for ESP32 core v2.0.0+ in WebServer_WT32_ETH01.h
   #endif
     
-  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+"
+  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+"
 #else
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
     #warning Using code for ESP32 core v1.0.6- in WebServer_WT32_ETH01.h
   #endif
   
-  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.0 for core v1.0.6-"
+  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.1 for core v1.0.6-"
 #endif
 
 #if ESP32
