@@ -1,6 +1,6 @@
 {
   "name": "WebServer_WT32_ETH01",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "keywords": "WebServer, Ethernet, MQTT, MQTTS, HTTP, HTTPS, SSL, Arduino, ESP32, LAN8720, WT32-ETH01, HTTP-Client, WebSocket-Client, MQTT-Client, server, client, websocket, LittleFS, SPIFFS, ThingStream",
   "description": "Simple Ethernet WebServer, HTTP/HTTPS Client wrapper library for WT32_ETH01 boards using LAN8720 Ethernet. The WebServer supports HTTP(S) GET and POST requests, provides argument parsing, handles one client at a time. It provides HTTP(S), MQTT(S) Client and supports WebServer serving from LittleFS/SPIFFS.",
   "authors":

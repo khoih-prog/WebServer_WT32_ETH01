@@ -12,6 +12,7 @@
 
 
 * [Changelog](#changelog)
+  * [Releases v1.4.1](#releases-v141)
   * [Releases v1.4.0](#releases-v140)
   * [Releases v1.3.0](#releases-v130)
   * [Releases v1.2.0](#releases-v120)
@@ -22,6 +23,10 @@
 ---
 
 ## Changelog
+
+#### Releases v1.4.1
+
+1. Fix bug in examples to reduce connection time
 
 #### Releases v1.4.0
 
