@@ -13,7 +13,7 @@
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
   
-  Version: 1.4.0
+  Version: 1.4.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -22,6 +22,7 @@
   1.2.0   K Hoang      12/07/2021 Add common code to library. Working only with core v1.0.6-
   1.3.0   K Hoang      23/10/2021 Making compatible with breaking core v2.0.0+
   1.4.0   K Hoang      27/11/2021 Auto detect ESP32 core version
+  1.4.1   K Hoang      29/11/2021 Fix bug in examples to reduce connection time
  *****************************************************************************************************************************/
 
 #pragma once

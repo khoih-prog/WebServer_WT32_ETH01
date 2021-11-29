@@ -820,23 +820,32 @@ The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/Ud
 
 ```
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
-ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
+WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
+ETH Started
+ETH Connected
+ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.95
+FULL_DUPLEX, 100Mbps
 UDP Packet received, size 48
-From 132.163.97.1, port 123
-Seconds since Jan 1 1900 = 3834534291
-Unix time = 1625545491
-The UTC time is 4:24:51
+From 132.163.96.4, port 123
+Seconds since Jan 1 1900 = 3847154050
+Unix time = 1638165250
+The UTC time is 5:54:10
 UDP Packet received, size 48
-From 132.163.97.1, port 123
-Seconds since Jan 1 1900 = 3834534303
-Unix time = 1625545503
-The UTC time is 4:25:03
+From 132.163.96.4, port 123
+Seconds since Jan 1 1900 = 3847154062
+Unix time = 1638165262
+The UTC time is 5:54:22
 UDP Packet received, size 48
-From 132.163.97.1, port 123
-Seconds since Jan 1 1900 = 3834534315
-Unix time = 1625545515
-The UTC time is 4:25:15
+From 132.163.96.4, port 123
+Seconds since Jan 1 1900 = 3847154074
+Unix time = 1638165274
+The UTC time is 5:54:34
+UDP Packet received, size 48
+From 132.163.96.4, port 123
+Seconds since Jan 1 1900 = 3847154086
+Unix time = 1638165286
+The UTC time is 5:54:46
+
 ```
 
 ---

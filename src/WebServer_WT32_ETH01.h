@@ -12,7 +12,7 @@
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
   
-  Version: 1.4.0
+  Version: 1.4.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -21,6 +21,7 @@
   1.2.0   K Hoang      12/07/2021 Add common code to library. Working only with core v1.0.6-
   1.3.0   K Hoang      23/10/2021 Making compatible with breaking core v2.0.0+
   1.4.0   K Hoang      27/11/2021 Auto detect ESP32 core version
+  1.4.1   K Hoang      29/11/2021 Fix bug in examples to reduce connection time
  *****************************************************************************************************************************/
 
 #pragma once
@@ -31,10 +32,17 @@
 //#if !defined(USING_CORE_ESP32_CORE_V200_PLUS)
 #if ( ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) ) && ( ARDUINO_ESP32_GIT_VER != 0x46d5afb1 ) )
   #define USING_CORE_ESP32_CORE_V200_PLUS      true
-  //#warning Using code for ESP32 core v2.0.0+ in WebServer_WT32_ETH01.h
+  
+  #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
+    #warning Using code for ESP32 core v2.0.0+ in WebServer_WT32_ETH01.h
+  #endif
+    
   #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+"
 #else
-  //#warning Using code for ESP32 core v1.0.6- in WebServer_WT32_ETH01.h
+  #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
+    #warning Using code for ESP32 core v1.0.6- in WebServer_WT32_ETH01.h
+  #endif
+  
   #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.4.0 for core v1.0.6-"
 #endif
 
