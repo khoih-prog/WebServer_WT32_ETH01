@@ -22,8 +22,7 @@
       "tests"
     ]
   },
-  "dependencies":
-  [],
+  "license": "GPL-3.0",
   "frameworks": "*",
   "platforms": "espressif32",
   "examples": "examples/*/*/*.ino",
