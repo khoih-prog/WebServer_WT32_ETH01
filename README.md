@@ -5,14 +5,15 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/WebServer_WT32_ETH01.svg)](http://github.com/khoih-prog/WebServer_WT32_ETH01/issues)
 
-<a href="https://www.buymeacoffee.com/khoihprog6" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+<a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
+<a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
 
 ---
 ---
 
 ## Table of Contents
 
-
+* [Important Change from v1.5.0](#Important-Change-from-v150)
 * [Why do we need this WebServer_WT32_ETH01 library](#why-do-we-need-this-webserver_wt32_eth01-library)
   * [Important notes](#Important-notes)
   * [Features](#features)
@@ -94,6 +95,13 @@
 * [License](#license)
 * [Copyright](#copyright)
 
+
+---
+---
+
+### Important Change from v1.2.0
+
+Please have a look at [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix-multiple-definitions-linker-error)
 
 ---
 ---
@@ -191,6 +199,31 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 
 To fix [`ESP32 compile error`](https://github.com/espressif/arduino-esp32), just copy the following file into the [`ESP32`](https://github.com/espressif/arduino-esp32) cores/esp32 directory (e.g. ./arduino-1.8.16/hardware/espressif/cores/esp32) to overwrite the old file:
 - [Server.h](LibraryPatches/esp32/cores/esp32/Server.h)
+
+
+---
+---
+
+
+### HOWTO Fix `Multiple Definitions` Linker Error
+
+The current library implementation, using `xyz-Impl.h` instead of standard `xyz.cpp`, possibly creates certain `Multiple Definitions` Linker error in certain use cases.
+
+You can include this `.hpp` file
+
+```
+// Can be included as many times as necessary, without `Multiple Definitions` Linker Error
+#include "WebServer_WT32_ETH01.hpp"     //https://github.com/khoih-prog/WebServer_WT32_ETH01
+```
+
+in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
+
+```
+// To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
+#include "WebServer_WT32_ETH01.h"           //https://github.com/khoih-prog/WebServer_WT32_ETH01
+```
+
+Check the new [**multiFileProject** example](examples/multiFileProject) for a `HOWTO` demo.
 
 
 ---
@@ -408,9 +441,10 @@ Example:
 12. [WebClient](examples/WebClient)
 13. [WebClientRepeating](examples/WebClientRepeating)
 14. [WebServer](examples/WebServer)
-15. [**ESP32_FS_EthernetWebServer**](examples/ESP32_FS_EthernetWebServer).
-16. [**serveStatic**](examples/serveStatic).
-17. [**serveStaticLoadFile**](examples/serveStaticLoadFile).
+15. [**ESP32_FS_EthernetWebServer**](examples/ESP32_FS_EthernetWebServer)
+16. [**serveStatic**](examples/serveStatic)
+17. [**serveStaticLoadFile**](examples/serveStaticLoadFile)
+18. [**multiFileProject**](examples/multiFileProject) **New**
 
 #### HTTPClient Examples
 
@@ -437,178 +471,7 @@ Example:
 #### File [AdvancedWebServer.ino](examples/AdvancedWebServer/AdvancedWebServer.ino)
 
 
-```cpp
-#define DEBUG_ETHERNET_WEBSERVER_PORT       Serial
-
-// Debug Level from 0 to 4
-#define _ETHERNET_WEBSERVER_LOGLEVEL_       3
-
-#include <WebServer_WT32_ETH01.h>
-
-WebServer server(80);
-
-// Select the IP address according to your local network
-IPAddress myIP(192, 168, 2, 232);
-IPAddress myGW(192, 168, 2, 1);
-IPAddress mySN(255, 255, 255, 0);
-
-// Google DNS Server IP
-IPAddress myDNS(8, 8, 8, 8);
-
-int reqCount = 0;                // number of requests received
-
-void handleRoot()
-{
-#define BUFFER_SIZE     400
-
-  char temp[BUFFER_SIZE];
-  int sec = millis() / 1000;
-  int min = sec / 60;
-  int hr = min / 60;
-  int day = hr / 24;
-
-  hr = hr % 24;
-
-  snprintf(temp, BUFFER_SIZE - 1,
-           "<html>\
-<head>\
-<meta http-equiv='refresh' content='5'/>\
-<title>AdvancedWebServer %s</title>\
-<style>\
-body { background-color: #cccccc; font-family: Arial, Helvetica, Sans-Serif; Color: #000088; }\
-</style>\
-</head>\
-<body>\
-<h2>Hi from WebServer_WT32_ETH01!</h2>\
-<h3>on %s</h3>\
-<p>Uptime: %d d %02d:%02d:%02d</p>\
-<img src=\"/test.svg\" />\
-</body>\
-</html>", BOARD_NAME, BOARD_NAME, day, hr % 24, min % 60, sec % 60);
-
-  server.send(200, F("text/html"), temp);
-}
-
-void handleNotFound()
-{
-  String message = F("File Not Found\n\n");
-
-  message += F("URI: ");
-  message += server.uri();
-  message += F("\nMethod: ");
-  message += (server.method() == HTTP_GET) ? F("GET") : F("POST");
-  message += F("\nArguments: ");
-  message += server.args();
-  message += F("\n");
-
-  for (uint8_t i = 0; i < server.args(); i++)
-  {
-    message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
-  }
-
-  server.send(404, F("text/plain"), message);
-}
-
-void drawGraph()
-{
-  String out;
-  out.reserve(3000);
-  char temp[70];
-
-  out += F("<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\" width=\"310\" height=\"150\">\n");
-  out += F("<rect width=\"310\" height=\"150\" fill=\"rgb(250, 230, 210)\" stroke-width=\"1\" stroke=\"rgb(0, 0, 0)\" />\n");
-  out += F("<g stroke=\"black\">\n");
-  int y = rand() % 130;
-
-  for (int x = 10; x < 300; x += 10)
-  {
-    int y2 = rand() % 130;
-    sprintf(temp, "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" stroke-width=\"1\" />\n", x, 140 - y, x + 10, 140 - y2);
-    out += temp;
-    y = y2;
-  }
-  out += F("</g>\n</svg>\n");
-
-  server.send(200, F("image/svg+xml"), out);
-}
-
-void setup()
-{
-  Serial.begin(115200);
-  while (!Serial);
-
-  // Using this if Serial debugging is not necessary or not using Serial port
-  //while (!Serial && (millis() < 3000));
-
-  Serial.print("\nStarting AdvancedWebServer on " + String(ARDUINO_BOARD));
-  Serial.println(" with " + String(SHIELD_TYPE));
-  Serial.println(WEBSERVER_WT32_ETH01_VERSION);
-
-  // To be called before ETH.begin()
-  WT32_ETH01_onEvent();
-
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
-  //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
-  //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
-  ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
-
-  // Static IP, leave without this line to get IP via DHCP
-  //bool config(IPAddress local_ip, IPAddress gateway, IPAddress subnet, IPAddress dns1 = 0, IPAddress dns2 = 0);
-  ETH.config(myIP, myGW, mySN, myDNS);
-
-  WT32_ETH01_waitForConnect();
-
-  server.on(F("/"), handleRoot);
-  server.on(F("/test.svg"), drawGraph);
-  server.on(F("/inline"), []()
-  {
-    server.send(200, F("text/plain"), F("This works as well"));
-  });
-
-  server.onNotFound(handleNotFound);
-  server.begin();
-
-  Serial.print(F("HTTP EthernetWebServer is @ IP : "));
-  Serial.println(ETH.localIP());
-}
-
-void heartBeatPrint()
-{
-  static int num = 1;
-
-  Serial.print(F("."));
-
-  if (num == 80)
-  {
-    Serial.println();
-    num = 1;
-  }
-  else if (num++ % 10 == 0)
-  {
-    Serial.print(F(" "));
-  }
-}
-
-void check_status()
-{
-  static unsigned long checkstatus_timeout = 0;
-
-#define STATUS_CHECK_INTERVAL     10000L
-
-  // Send status report every STATUS_REPORT_INTERVAL (60) seconds: we don't need to send updates frequently if there is no status change.
-  if ((millis() > checkstatus_timeout) || (checkstatus_timeout == 0))
-  {
-    heartBeatPrint();
-    checkstatus_timeout = millis() + STATUS_CHECK_INTERVAL;
-  }
-}
-
-void loop()
-{
-  server.handleClient();
-  check_status();
-}
-```
+https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/c0e81a4e5a25a5ac9392a11318e0090edbed988a/examples/AdvancedWebServer/AdvancedWebServer.ino#L41-L210
 
 ---
 ---
@@ -625,7 +488,7 @@ The following are debug terminal output and screen shot when running example [Ad
 
 ```
 Starting AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -643,7 +506,7 @@ The terminal output of **WT32_ETH01** running [ESP32_FS_EthernetWebServer](examp
 
 ```cpp
 Starting ESP32_FS_EthernetWebServer on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 
 ETH Started
 ETH Connected
@@ -693,7 +556,7 @@ The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](example
 
 ```
 Starting MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 ***************************************
 esp32-sniffer/12345678/ble
@@ -717,7 +580,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Auth example](examples
 
 ```
 Starting MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Auth on WT32-ETH01 with ETH_PHY_LAN8720
@@ -734,7 +597,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_Basic example](example
 
 ```
 Starting MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Attempting MQTT connection to broker.emqx.io...connected
 Message Send : MQTT_Pub => Hello from MQTTClient_Basic on WT32-ETH01 with ETH_PHY_LAN8720
@@ -754,7 +617,7 @@ The terminal output of **WT32_ETH01** running [WebClient example](examples/WebCl
 
 ```
 Starting WebClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 
 Starting connection to server...
@@ -822,7 +685,7 @@ The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/Ud
 
 ```
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.0 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH Started
 ETH Connected
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.95
@@ -860,7 +723,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpClient example](examples
 
 ```
 Starting BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 [HTTP] begin...
 [HTTP] GET...
@@ -922,7 +785,7 @@ The terminal output of **WT32_ETH01** running [BasicHttpsClient example](example
 
 ```
 Starting BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 05:29:39 2021
@@ -967,7 +830,7 @@ The terminal output of **WT32_ETH01** running [WebClientMulti_SSL example](examp
 
 ```
 Starting WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 19:58:27 2021
@@ -1081,7 +944,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Complex example](e
 
 ```
 Starting MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:14:02 2021
@@ -1101,7 +964,7 @@ The terminal output of **WT32_ETH01** running [MQTTS_ThingStream example](exampl
 
 ```
 Starting MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:38:22 2021
@@ -1127,7 +990,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL example](examples/
 
 ```
 Starting MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 17:11:00 2021
@@ -1152,7 +1015,7 @@ The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Auth example](exam
 
 ```
 Starting MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
-WebServer_WT32_ETH01 v1.4.1 for core v2.0.0+
+WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 Waiting for NTP time sync: .
 Current time: Tue Jul  6 18:05:14 2021
@@ -1211,7 +1074,9 @@ Submit issues to: [WebServer_WT32_ETH01 issues](https://github.com/khoih-prog/We
  3. Add HTTPS and MQTTS examples
  4. Support breaking ESP32 core v2.0.0+ as well as v1.0.6-
  5. Auto detect ESP32 core v1.0.6- or v2.0.0+ to use correct settings
-
+ 6. Fix `multiple-definitions` linker error.
+ 7. Add example [multiFileProject](examples/multiFileProject) to demo for multiple-file project
+ 
 ---
 ---
 
