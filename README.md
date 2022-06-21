@@ -54,6 +54,7 @@
     * [15. **ESP32_FS_EthernetWebServer**](examples/ESP32_FS_EthernetWebServer)
     * [16. **serveStatic**](examples/serveStatic)
     * [17. **serveStaticLoadFile**](examples/serveStaticLoadFile)
+    * [18. **multiFileProject**](examples/multiFileProject) **New**
   * [HTTPClient Examples](#httpclient-examples)
     * [ 1. Authorization](examples/HTTPClient/Authorization)
     * [ 2. BasicHttpClient](examples/HTTPClient/BasicHttpClient)
@@ -99,7 +100,7 @@
 ---
 ---
 
-### Important Change from v1.2.0
+### Important Change from v1.5.0
 
 Please have a look at [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix-multiple-definitions-linker-error)
 
@@ -162,7 +163,7 @@ This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.2+`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 2. [`ESP32 Core 2.0.3+`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
  3. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.2.0- [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
 
 ---
@@ -186,7 +187,7 @@ You can also use this link [![arduino-library-badge](https://www.ardu-badge.com/
 
 1. Install [VS Code](https://code.visualstudio.com/)
 2. Install [PlatformIO](https://platformio.org/platformio-ide)
-3. Install [**WebServer_WT32_ETH01** library](https://platformio.org/lib/show/12512/WebServer_WT32_ETH01) by using [Library Manager](https://platformio.org/lib/show/12512/WebServer_WT32_ETH01/installation). Search for WebServer_WT32_ETH01 in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
+3. Install [**WebServer_WT32_ETH01** library](https://registry.platformio.org/libraries/WebServer_WT32_ETH01) by using [Library Manager](https://registry.platformio.org/libraries/WebServer_WT32_ETH01/installation). Search for WebServer_WT32_ETH01 in [Platform.io Author's Libraries](https://platformio.org/lib/search?query=author:%22Khoi%20Hoang%22)
 4. Use included [platformio.ini](platformio/platformio.ini) file from examples to ensure that all dependent libraries will installed automatically. Please visit documentation for the other options and examples at [Project Configuration File](https://docs.platformio.org/page/projectconf.html)
 
 ---
