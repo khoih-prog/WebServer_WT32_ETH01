@@ -36,7 +36,7 @@
 #include <ESPAsyncWebServer.h>            // https://github.com/me-no-dev/ESPAsyncWebServer
 #include <AsyncElegantOTA.h>              // https://github.com/ayushsharma82/AsyncElegantOTA
 
-// Libraries also needed: https://github.com/plapointe6/EspMQTTClient, https://github.com/knolleary/pubsubclient
+// Libraries also needed: https://github.com/knolleary/pubsubclient
 
 AsyncWebServer server(80);
 
