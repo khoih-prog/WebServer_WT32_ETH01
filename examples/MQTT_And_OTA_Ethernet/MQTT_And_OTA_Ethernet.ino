@@ -66,7 +66,7 @@ void setup()
   // Using this if Serial debugging is not necessary or not using Serial port
   //while (!Serial && (millis() < 3000));
 
-  Serial.print("\nStarting MQTTClient_Auth on " + String(ARDUINO_BOARD));
+  Serial.print("\nStarting MQTT_And_OTA_Ethernet on " + String(ARDUINO_BOARD));
   Serial.println(" with " + String(SHIELD_TYPE));
   Serial.println(WEBSERVER_WT32_ETH01_VERSION);
 
@@ -158,7 +158,7 @@ unsigned long lastMsg = 0;
 
 void loop() 
 {
-  String data         = "Hello from v00 MQTT_And_OTEthernet_Example on: " + String(BOARD_NAME) + " with " + String(SHIELD_TYPE);
+  String data         = "Hello from v00 MQTT_And_OTA_Ethernet on: " + String(BOARD_NAME) + " with " + String(SHIELD_TYPE);
   const char *pubData = data.c_str();
 
   static unsigned long now;
