@@ -1094,14 +1094,15 @@ Submit issues to: [WebServer_WT32_ETH01 issues](https://github.com/khoih-prog/We
 Many thanks for everyone for bug reporting, new feature suggesting, testing and contributing to the development of this library.
 
 1. Based on the [Ivan Grokhotkov's ESP32 WebServer](https://github.com/espressif/arduino-esp32/tree/master/libraries/WebServer) and [HTTPClient Library](https://github.com/espressif/arduino-esp32/tree/master/libraries/HTTPClient) libraries.
-2. Thanks to [Sardar Azari](https://github.com/gagulik) to make PR in [streamFile and serveStatic for ESP8266/ESP32 boards #22](https://github.com/khoih-prog/EthernetWebServer/pull/22) to add WebServer feature to serve static from LittleFS/SPIFFS for ESP32. The example [**serveStatic**](examples/serveStatic) and [**serveStaticLoadFile**](examples/serveStaticLoadFile) are also contributed by [Sardar Azari](https://github.com/gagulik).
+2. Thanks to [Sardar Azari](https://github.com/gagulik) to make PR in [streamFile and serveStatic for ESP8266/ESP32 boards #22](https://github.com/khoih-prog/EthernetWebServer/pull/22) to add WebServer feature to serve static from LittleFS/SPIFFS for ESP32. The example [**serveStatic**](examples/serveStatic) and [**serveStaticLoadFile**](examples/serveStaticLoadFile) are also contributed by [Sardar Azari](https://github.com/gagulik)
+3. Thanks to [DSikes](https://github.com/PockyBum522) to make PR in [Added MQTT and OTA over Ethernet example to examples folder #9](https://github.com/khoih-prog/WebServer_WT32_ETH01/pull/9) to add OTA feature, leading to v1.5.1
 
 
 <table>
   <tr>
     <td align="center"><a href="https://github.com/igrr"><img src="https://github.com/igrr.png" width="100px;" alt="igrr"/><br /><sub><b>⭐️ Ivan Grokhotkov</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/gagulik"><img src="https://github.com/gagulik.png" width="100px;" alt="gagulik"/><br /><sub><b>
-Sardar Azari</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/gagulik"><img src="https://github.com/gagulik.png" width="100px;" alt="gagulik"/><br /><sub><b>Sardar Azari</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/PockyBum522"><img src="https://github.com/PockyBum522.png" width="100px;" alt="PockyBum522"/><br /><sub><b>DSikes</b></sub></a><br /></td>
   </tr> 
 </table>
 
