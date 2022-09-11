@@ -12,6 +12,7 @@
 
 
 * [Changelog](#changelog)
+  * [Releases v1.5.1](#releases-v151)
   * [Releases v1.5.0](#releases-v150)
   * [Releases v1.4.1](#releases-v141)
   * [Releases v1.4.0](#releases-v140)
@@ -24,6 +25,12 @@
 ---
 
 ## Changelog
+
+#### Releases v1.5.1
+
+1. Add example [MQTT_And_OTA_Ethernet](https://github.com/khoih-prog/WebServer_WT32_ETH01/tree/main/examples/MQTT_And_OTA_Ethernet) to demo how to use OTA. Check [Added MQTT and OTA over Ethernet example to examples folder #9](https://github.com/khoih-prog/WebServer_WT32_ETH01/pull/9)
+2. Fix compile error for examples [serveStatic](https://github.com/khoih-prog/WebServer_WT32_ETH01/tree/main/examples/serveStatic) and [serveStaticLoadFile](https://github.com/khoih-prog/WebServer_WT32_ETH01/tree/main/examples/serveStaticLoadFile) to use built-in LittleFS library for new ESP32 cores
+3. Fix compile error for examples [ESP32_FS_EthernetWebServer](https://github.com/khoih-prog/WebServer_WT32_ETH01/tree/main/examples/ESP32_FS_EthernetWebServer) if WT32_ETH01 is selected as A0 (and many pins) not defined in new ESP32 cores
 
 #### Releases v1.5.0
 

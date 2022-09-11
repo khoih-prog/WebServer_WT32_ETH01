@@ -12,7 +12,7 @@
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
   
-  Version: 1.5.0
+  Version: 1.5.1
 
   Version Modified By   Date      Comments
   ------- -----------  ---------- -----------
@@ -23,6 +23,7 @@
   1.4.0   K Hoang      27/11/2021 Auto detect ESP32 core version
   1.4.1   K Hoang      29/11/2021 Fix bug in examples to reduce connection time
   1.5.0   K Hoang      21/06/2022 Fix multiple-definitions linker error
+  1.5.1   K Hoang      10/09/2022 Add example MQTT_And_OTA_Ethernet. Fix compile error for examples
  *****************************************************************************************************************************/
 
 #pragma once
@@ -40,14 +41,20 @@
     #warning Using code for ESP32 core v2.0.0+ in WebServer_WT32_ETH01.h
   #endif
     
-  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.5.0 for core v2.0.0+"
+  #define WEBSERVER_WT32_ETH01_VERSION      	"WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+"
 #else
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
     #warning Using code for ESP32 core v1.0.6- in WebServer_WT32_ETH01.h
   #endif
   
-  #define WEBSERVER_WT32_ETH01_VERSION      "WebServer_WT32_ETH01 v1.5.0 for core v1.0.6-"
+  #define WEBSERVER_WT32_ETH01_VERSION      	"WebServer_WT32_ETH01 v1.5.1 for core v1.0.6-"
 #endif
+
+#define WEBSERVER_WT32_ETH01_VERSION_MAJOR    1
+#define WEBSERVER_WT32_ETH01_VERSION_MINOR    5
+#define WEBSERVER_WT32_ETH01_VERSION_PATCH    1
+
+#define WEBSERVER_WT32_ETH01_VERSION_INT      1005001
 
 #if ESP32
   #warning Using ESP32 architecture for WebServer_WT32_ETH01

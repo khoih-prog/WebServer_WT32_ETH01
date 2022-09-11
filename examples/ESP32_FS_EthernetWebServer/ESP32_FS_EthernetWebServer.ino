@@ -30,6 +30,11 @@
 #define USE_LITTLEFS                true
 #define USE_SPIFFS                  false
 
+// For WT32_ETH01 only (A0 = IO36 = 36)
+#if defined(ARDUINO_WT32_ETH01)
+  #define A0        36
+#endif
+
 // For ESP32
 #if USE_LITTLEFS
 //LittleFS has higher priority
@@ -367,7 +372,7 @@ void handleFileList()
   server.send(200, "text/json", output);
 }
 
-void initFS(void)
+void initFS()
 {
   // Initialize LittleFS/SPIFFS file-system
   // Format SPIFFS if not yet
@@ -406,7 +411,7 @@ void listDir()
   Serial.println();
 }
 
-void initWebserver(void)
+void initWebserver()
 {
   //SERVER INIT
   //list directory
@@ -474,7 +479,7 @@ void initWebserver(void)
   server.begin();
 }
 
-void setup(void)
+void setup()
 {
   Serial.begin(115200);
   while (!Serial);
@@ -512,7 +517,7 @@ void setup(void)
   Serial.println(F("/edit to see the file browser"));
 }
 
-void loop(void)
+void loop()
 {
   server.handleClient();
 }
