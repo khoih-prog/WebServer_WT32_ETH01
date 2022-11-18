@@ -569,7 +569,7 @@ esp32-sniffer/12345678/ble
 Attempting MQTT connection to mqtt.thingstream.io
 ...connected
 Published connection message successfully!
-Subcribed to: esp32-sniffer/12345678/ble
+Subscribed to: esp32-sniffer/12345678/ble
 MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTT_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
 MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTT_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
 MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTT_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
@@ -979,7 +979,7 @@ esp32-sniffer/12345678/ble
 Attempting MQTT connection to mqtt.thingstream.io
 ...connected
 Published connection message successfully!
-Subcribed to: esp32-sniffer/12345678/ble
+Subscribed to: esp32-sniffer/12345678/ble
 MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
 MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
 MQTT Message Send : esp32-sniffer/12345678/ble => Hello from MQTTS_ThingStream on WT32-ETH01 with ETH_PHY_LAN8720
