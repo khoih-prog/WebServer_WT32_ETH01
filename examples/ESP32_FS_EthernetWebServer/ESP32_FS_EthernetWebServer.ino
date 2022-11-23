@@ -37,41 +37,41 @@
 
 // For ESP32
 #if USE_LITTLEFS
-//LittleFS has higher priority
-#include "FS.h"
+  //LittleFS has higher priority
+  #include "FS.h"
 
-// Check cores/esp32/esp_arduino_version.h and cores/esp32/core_version.h
-//#if ( ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(2, 0, 0) )  //(ESP_ARDUINO_VERSION_MAJOR >= 2)
-#if ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) )
-  #warning Using ESP32 Core 1.0.6 or 2.0.0+
-  // The library has been merged into esp32 core from release 1.0.6
-  #include <LittleFS.h>
-  
-  FS* filesystem =            &LittleFS;
-  #define FileFS              LittleFS
-  #define CurrentFileFS       "LittleFS"
-#else
-  #warning Using ESP32 Core 1.0.5-. You must install LITTLEFS library
-  // The library has been merged into esp32 core from release 1.0.6
-  #include <LITTLEFS.h>             // https://github.com/lorol/LITTLEFS
-  
-  FS* filesystem =            &LITTLEFS;
-  #define FileFS              LITTLEFS
-  #define CurrentFileFS       "LittleFS"
-#endif
+  // Check cores/esp32/esp_arduino_version.h and cores/esp32/core_version.h
+  //#if ( ESP_ARDUINO_VERSION >= ESP_ARDUINO_VERSION_VAL(2, 0, 0) )  //(ESP_ARDUINO_VERSION_MAJOR >= 2)
+  #if ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) )
+    #warning Using ESP32 Core 1.0.6 or 2.0.0+
+    // The library has been merged into esp32 core from release 1.0.6
+    #include <LittleFS.h>
 
-#ifdef USE_SPIFFS
-  #undef USE_SPIFFS
-#endif
+    FS* filesystem =            &LittleFS;
+    #define FileFS              LittleFS
+    #define CurrentFileFS       "LittleFS"
+  #else
+    #warning Using ESP32 Core 1.0.5-. You must install LITTLEFS library
+    // The library has been merged into esp32 core from release 1.0.6
+    #include <LITTLEFS.h>             // https://github.com/lorol/LITTLEFS
 
-#define USE_SPIFFS                  false
+    FS* filesystem =            &LITTLEFS;
+    #define FileFS              LITTLEFS
+    #define CurrentFileFS       "LittleFS"
+  #endif
+
+  #ifdef USE_SPIFFS
+    #undef USE_SPIFFS
+  #endif
+
+  #define USE_SPIFFS                  false
 #elif USE_SPIFFS
-#include "FS.h"
-#include <SPIFFS.h>
+  #include "FS.h"
+  #include <SPIFFS.h>
 
-FS* filesystem =          &SPIFFS;
-#define FileFS            SPIFFS
-#define CurrentFileFS     "SPIFFS"
+  FS* filesystem =          &SPIFFS;
+  #define FileFS            SPIFFS
+  #define CurrentFileFS     "SPIFFS"
 #endif
 
 #include <WebServer_WT32_ETH01.h>
@@ -198,12 +198,14 @@ String getContentType(String filename)
   {
     return "application/x-gzip";
   }
+
   return "text/plain";
 }
 
 bool handleFileRead(String path)
 {
   Serial.println("handleFileRead: " + path);
+
   if (path.endsWith("/"))
   {
     path += "index.htm";
@@ -224,6 +226,7 @@ bool handleFileRead(String path)
     file.close();
     return true;
   }
+
   return false;
 }
 
@@ -305,7 +308,8 @@ void handleFileUpload()
       filename = "/" + filename;
     }
 
-    Serial.print(F("handleFileUpload Name: ")); Serial.println(filename);
+    Serial.print(F("handleFileUpload Name: "));
+    Serial.println(filename);
     fsUploadFile = filesystem->open(filename, "w");
     filename.clear();
   }
@@ -325,7 +329,8 @@ void handleFileUpload()
       fsUploadFile.close();
     }
 
-    Serial.print(F("handleFileUpload Size: ")); Serial.println(upload.totalSize);
+    Serial.print(F("handleFileUpload Size: "));
+    Serial.println(upload.totalSize);
   }
 }
 
@@ -400,6 +405,7 @@ void listDir()
 {
   File root = FileFS.open("/");
   File file = root.openNextFile();
+
   while (file)
   {
     String fileName = file.name();
@@ -482,6 +488,7 @@ void initWebserver()
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -494,7 +501,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);

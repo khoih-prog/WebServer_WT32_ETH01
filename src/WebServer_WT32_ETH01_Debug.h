@@ -1,6 +1,6 @@
 /****************************************************************************************************************************
-  WebServer_WT32_ETH01_Debug.h - Dead simple Ethernet web-server.  
-   
+  WebServer_WT32_ETH01_Debug.h - Dead simple Ethernet web-server.
+
   For Ethernet shields using WT32_ETH01 (ESP32 + LAN8720)
 
   WebServer_WT32_ETH01 is a library for the Ethernet LAN8720 in WT32_ETH01 to run WebServer
@@ -12,7 +12,7 @@
   Original author:
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
-  
+
   Version: 1.5.1
 
   Version Modified By   Date      Comments
@@ -35,9 +35,9 @@
 #include <stdio.h>
 
 #ifdef DEBUG_ETHERNET_WEBSERVER_PORT
-#define ET_DEBUG_OUTPUT DEBUG_ETHERNET_WEBSERVER_PORT
+  #define ET_DEBUG_OUTPUT DEBUG_ETHERNET_WEBSERVER_PORT
 #else
-#define ET_DEBUG_OUTPUT Serial
+  #define ET_DEBUG_OUTPUT Serial
 #endif
 
 // Change _ETHERNET_WEBSERVER_LOGLEVEL_ to set tracing and logging verbosity
@@ -48,7 +48,7 @@
 // 4: DEBUG: errors, warnings, informational and debug
 
 #ifndef _ETHERNET_WEBSERVER_LOGLEVEL_
-#define _ETHERNET_WEBSERVER_LOGLEVEL_       0
+  #define _ETHERNET_WEBSERVER_LOGLEVEL_       0
 #endif
 
 const char EWS_MARK[]  = "[EWS] ";

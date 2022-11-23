@@ -13,7 +13,7 @@
 #ifndef _CERTIFICATES_H_
 #define _CERTIFICATES_H_
 
-// This is the root Certificate Authority that signed the server certifcate 
+// This is the root Certificate Authority that signed the server certifcate
 // for the demo server www.arduino.cc:443 in this example.
 // To generate the Root CA Cert, use the following command (in Linux / Ubuntu)
 // $ openssl s_client -showcerts -connect www.arduino.cc:443
@@ -42,5 +42,5 @@ const char* rootCACertificate1 =
   "CZMRJCQUzym+5iPDuI9yP+kHyCREU3qzuWFloUwOxkgAyXVjBYdwRVKD05WdRerw\n" \
   "6DEdfgkfCv4+3ao8XnTSrLE=\n" \
   "-----END CERTIFICATE-----\n";
-  
+
 #endif /* ifndef _CERTIFICATES_H_ */

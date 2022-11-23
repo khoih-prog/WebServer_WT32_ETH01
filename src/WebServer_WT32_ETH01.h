@@ -11,7 +11,7 @@
   Original author:
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
-  
+
   Version: 1.5.1
 
   Version Modified By   Date      Comments
@@ -36,18 +36,18 @@
 //#if !defined(USING_CORE_ESP32_CORE_V200_PLUS)
 #if ( ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) ) && ( ARDUINO_ESP32_GIT_VER != 0x46d5afb1 ) )
   #define USING_CORE_ESP32_CORE_V200_PLUS      true
-  
+
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
     #warning Using code for ESP32 core v2.0.0+ in WebServer_WT32_ETH01.h
   #endif
-    
-  #define WEBSERVER_WT32_ETH01_VERSION      	"WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+"
+
+  #define WEBSERVER_WT32_ETH01_VERSION        "WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+"
 #else
   #if (_ETHERNET_WEBSERVER_LOGLEVEL_ > 2)
     #warning Using code for ESP32 core v1.0.6- in WebServer_WT32_ETH01.h
   #endif
-  
-  #define WEBSERVER_WT32_ETH01_VERSION      	"WebServer_WT32_ETH01 v1.5.1 for core v1.0.6-"
+
+  #define WEBSERVER_WT32_ETH01_VERSION        "WebServer_WT32_ETH01 v1.5.1 for core v1.0.6-"
 #endif
 
 #define WEBSERVER_WT32_ETH01_VERSION_MAJOR    1
@@ -59,7 +59,7 @@
 #if ESP32
   #warning Using ESP32 architecture for WebServer_WT32_ETH01
   #define BOARD_NAME      "WT32-ETH01"
-#else  
+#else
   #error This code is designed to run on ESP32 platform! Please check your Tools->Board setting.
 #endif
 

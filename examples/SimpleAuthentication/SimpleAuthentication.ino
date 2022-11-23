@@ -1,6 +1,6 @@
 /****************************************************************************************************************************
   SimpleAuthentication.ino - Dead simple web-server for Ethernet shields
-  
+
   For Ethernet shields using WT32_ETH01 (ESP32 + LAN8720)
 
   WebServer_WT32_ETH01 is a library for the Ethernet LAN8720 in WT32_ETH01 to run WebServer
@@ -31,17 +31,20 @@ IPAddress myDNS(8, 8, 8, 8);
 bool is_authenticated()
 {
   Serial.println(F("Enter is_authenticated"));
+
   if (server.hasHeader(F("Cookie")))
   {
     Serial.print(F("Found cookie: "));
     String cookie = server.header(F("Cookie"));
     Serial.println(cookie);
+
     if (cookie.indexOf(F("ESPSESSIONID=1")) != -1)
     {
       Serial.println(F("Authentication Successful"));
       return true;
     }
   }
+
   Serial.println(F("Authentication Failed"));
   return false;
 }
@@ -79,7 +82,7 @@ void handleLogin()
       Serial.println(F("Log in Successful"));
       return;
     }
-    
+
     msg = F("Wrong username/password! try again.");
     Serial.println(F("Log in Failed"));
   }
@@ -110,7 +113,7 @@ void handleRoot()
   }
 
   String content = F("<html><body><H2>Hello, you're connected to WebServer_WT32_ETH01 running on ");
-  
+
   content += String(BOARD_NAME);
   content += F("!</H2><br>");
 
@@ -129,7 +132,7 @@ void handleRoot()
 void handleNotFound()
 {
   String message = F("File Not Found\n\n");
-  
+
   message += F("URI: ");
   message += server.uri();
   message += F("\nMethod: ");
@@ -137,18 +140,19 @@ void handleNotFound()
   message += F("\nArguments: ");
   message += server.args();
   message += F("\n");
-  
+
   for (uint8_t i = 0; i < server.args(); i++)
   {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
-  
+
   server.send(404, F("text/plain"), message);
 }
 
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -161,7 +165,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -173,7 +177,7 @@ void setup()
   WT32_ETH01_waitForConnect();
 
   server.on(F("/"), handleRoot);
-  
+
   server.on(F("/login"), handleLogin);
 
   server.on(F("/inline"), []()

@@ -16,13 +16,14 @@
 // Can be included as many times as necessary, without `Multiple Definitions` Linker Error
 #include "WebServer_WT32_ETH01.h"
 
-void setup() 
+void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   delay(500);
-  
+
   Serial.println("\nStart multiFileProject");
   Serial.println(WEBSERVER_WT32_ETH01_VERSION);
 
@@ -30,7 +31,7 @@ void setup()
   Serial.print("You're OK now");
 }
 
-void loop() 
+void loop()
 {
   // put your main code here, to run repeatedly:
 }

@@ -50,50 +50,50 @@ const char* mqttServer = "broker.emqx.io";        // Broker address
 const char *TOPIC     = "MQTT_Pub";               // Topic to subcribe to
 const char *subTopic  = "MQTT_Sub";               // Topic to subcribe to
 
-void callback(char* topic, byte* payload, unsigned int length) 
+void callback(char* topic, byte* payload, unsigned int length)
 {
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  
-  for (unsigned int i = 0; i < length; i++) 
+
+  for (unsigned int i = 0; i < length; i++)
   {
     Serial.print((char)payload[i]);
   }
-  
+
   Serial.println();
 }
 
 WiFiClientSecure ethClientSSL;
-  
+
 PubSubClient client(mqttServer, 8883, callback, ethClientSSL);
 
-void reconnect() 
+void reconnect()
 {
   // Loop until we're reconnected
-  while (!client.connected()) 
+  while (!client.connected())
   {
     Serial.print("Attempting MQTTS connection to ");
     Serial.print(mqttServer);
-    
+
     // Attempt to connect
     if (client.connect("arduinoClient", "testuser", "testpass"))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       client.publish(TOPIC, "Hello World from WT32_ETH01");
       // ... and resubscribe
       client.subscribe(subTopic);
       // for loopback testing
       client.subscribe(TOPIC);
-    } 
-    else 
+    }
+    else
     {
       Serial.print(" => failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
-      
+
       // Wait 5 seconds before retrying
       delay(5000);
     }
@@ -128,6 +128,7 @@ void setup()
 {
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -140,7 +141,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -154,11 +155,11 @@ void setup()
   setClock();
 
   ethClientSSL.setCACert(rootCACertificate);
-  
+
   // Note - the default maximum packet size is 128 bytes. If the
   // combined length of clientId, username and password exceed this use the
   // following to increase the buffer size:
-   client.setBufferSize(255);
+  client.setBufferSize(255);
 }
 
 #define MQTT_PUBLISH_INTERVAL_MS       10000L
@@ -168,18 +169,18 @@ const char *pubData = data.c_str();
 
 unsigned long lastMsg = 0;
 
-void loop() 
+void loop()
 {
   static unsigned long now;
-  
-  if (!client.connected()) 
+
+  if (!client.connected())
   {
     reconnect();
   }
 
   // Sending Data
   now = millis();
-  
+
   if (now - lastMsg > MQTT_PUBLISH_INTERVAL_MS)
   {
     lastMsg = now;
@@ -192,6 +193,6 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client.loop();
 }

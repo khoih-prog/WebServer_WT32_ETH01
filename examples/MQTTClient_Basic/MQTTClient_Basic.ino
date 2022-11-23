@@ -12,7 +12,7 @@
   - publishes "hello world" to the topic "outTopic"
   - subscribes to the topic "inTopic", printing out any messages
     it receives. NB - it assumes the received payloads are strings not binary
-    
+
   It will reconnect to the server if the connection is lost using a blocking
   reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
   achieve the same result without blocking the main loop.
@@ -48,17 +48,17 @@ const char *subTopic  = "MQTT_Sub";               // Topic to subcribe to
 
 //IPAddress mqttServer(172, 16, 0, 2);
 
-void callback(char* topic, byte* payload, unsigned int length) 
+void callback(char* topic, byte* payload, unsigned int length)
 {
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  
-  for (unsigned int i = 0; i < length; i++) 
+
+  for (unsigned int i = 0; i < length; i++)
   {
     Serial.print((char)payload[i]);
   }
-  
+
   Serial.println();
 }
 
@@ -77,7 +77,7 @@ void reconnect()
     if (client.connect(ID, "try", "try"))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       String data = "Hello from MQTTClient_SSL on " + String(BOARD_NAME);
 
@@ -86,7 +86,7 @@ void reconnect()
       //Serial.println("Published connection message successfully!");
       //Serial.print("Subcribed to: ");
       //Serial.println(subTopic);
-      
+
       // This is a workaround to address https://github.com/OPEnSLab-OSU/SSLClient/issues/9
       //ethClientSSL.flush();
       // ... and resubscribe
@@ -112,6 +112,7 @@ void setup()
 {
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -124,7 +125,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -149,18 +150,18 @@ const char *pubData = data.c_str();
 
 unsigned long lastMsg = 0;
 
-void loop() 
+void loop()
 {
   static unsigned long now;
-  
-  if (!client.connected()) 
+
+  if (!client.connected())
   {
     reconnect();
   }
 
   // Sending Data
   now = millis();
-  
+
   if (now - lastMsg > MQTT_PUBLISH_INTERVAL_MS)
   {
     lastMsg = now;
@@ -173,6 +174,6 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client.loop();
 }

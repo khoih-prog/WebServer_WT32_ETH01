@@ -1,6 +1,6 @@
 /****************************************************************************************************************************
   HTTPBasicAuth.h - Dead simple web-server for Ethernet shields
-  
+
   For Ethernet shields using WT32_ETH01 (ESP32 + LAN8720)
 
   WebServer_WT32_ETH01 is a library for the Ethernet LAN8720 in WT32_ETH01 to run WebServer
@@ -33,6 +33,7 @@ const char* www_password = "wt32_eth01";
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -45,7 +46,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -62,14 +63,14 @@ void setup()
     {
       return server.requestAuthentication();
     }
-    
+
     server.send(200, F("text/plain"), F("Login OK"));
   });
 
   server.begin();
 
   Serial.print(F("HTTP HTTPBasicAuth started @ IP : "));
-  Serial.println(ETH.localIP());  
+  Serial.println(ETH.localIP());
 
   Serial.print(F("Open http://"));
   Serial.print(ETH.localIP());

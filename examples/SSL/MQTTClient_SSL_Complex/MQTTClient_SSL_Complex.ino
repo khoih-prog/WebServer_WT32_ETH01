@@ -68,7 +68,7 @@ void callback(char* topic, byte* payload, unsigned int length)
 }
 
 WiFiClientSecure ethClientSSL;
-  
+
 PubSubClient client(mqttServer, 8883, callback, ethClientSSL);
 
 void reconnect()
@@ -83,7 +83,7 @@ void reconnect()
     if (client.connect(ID))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       String data = "Hello from MQTTClient_SSL_Complex on " + String(BOARD_NAME);
 
@@ -92,7 +92,7 @@ void reconnect()
       //Serial.println("Published connection message successfully!");
       //Serial.print("Subcribed to: ");
       //Serial.println(subTopic);
-      
+
       // ... and resubscribe
       client.subscribe(subTopic);
       // for loopback testing
@@ -138,6 +138,7 @@ void setup()
 {
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -150,7 +151,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -168,7 +169,7 @@ void setup()
   // Note - the default maximum packet size is 128 bytes. If the
   // combined length of clientId, username and password exceed this use the
   // following to increase the buffer size:
-   client.setBufferSize(255);
+  client.setBufferSize(255);
 }
 
 #define MQTT_PUBLISH_INTERVAL_MS       5000L
@@ -176,7 +177,7 @@ void setup()
 void loop()
 {
   static unsigned long now;
-  
+
   if (!client.connected())
   {
     reconnect();
@@ -199,6 +200,6 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client.loop();
 }

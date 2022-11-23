@@ -53,17 +53,17 @@ unsigned long lastMsg = 0;
 // Initialize the SSL client library
 // Arguments: EthernetClient, our trust anchors
 
-void callback(char* topic, byte* payload, unsigned int length) 
+void callback(char* topic, byte* payload, unsigned int length)
 {
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  
-  for (unsigned int i = 0; i < length; i++) 
+
+  for (unsigned int i = 0; i < length; i++)
   {
     Serial.print((char)payload[i]);
   }
-  
+
   Serial.println();
 }
 
@@ -72,13 +72,13 @@ void callback(char* topic, byte* payload, unsigned int length)
 #if USE_PTR
 
   WiFiClientSecure* ethClientSSL;
-  
+
   PubSubClient*       client;
 
 #else
 
   WiFiClientSecure ethClientSSL;
-  
+
   PubSubClient client(mqttServer, 8883, callback, ethClientSSL);
 
 #endif
@@ -96,7 +96,7 @@ void reconnect()
     if (client->connect(ID))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       String data = "Hello from MQTTClient_SSL on " + String(BOARD_NAME);
 
@@ -105,7 +105,7 @@ void reconnect()
       //Serial.println("Published connection message successfully!");
       //Serial.print("Subcribed to: ");
       //Serial.println(subTopic);
-      
+
       // ... and resubscribe
       client->subscribe(subTopic);
       // for loopback testing
@@ -137,7 +137,7 @@ void reconnect()
     if (client.connect(ID))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       String data = "Hello from MQTTClient_SSL on " + String(BOARD_NAME);
 
@@ -146,7 +146,7 @@ void reconnect()
       //Serial.println("Published connection message successfully!");
       //Serial.print("Subcribed to: ");
       //Serial.println(subTopic);
-      
+
       // ... and resubscribe
       client.subscribe(subTopic);
       // for loopback testing
@@ -193,6 +193,7 @@ void setup()
 {
   // Open serial communications and wait for port to open:
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -205,7 +206,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -216,7 +217,7 @@ void setup()
 
   WT32_ETH01_waitForConnect();
 
-  setClock();  
+  setClock();
 
 #if USE_PTR
 
@@ -226,25 +227,25 @@ void setup()
   {
     ethClientSSL->setCACert(rootCACertificate);
   }
-  
+
   client = new PubSubClient(mqttServer, 8883, callback, *ethClientSSL);
 
   // Note - the default maximum packet size is 256 bytes. If the
   // combined length of clientId, username and password exceed this use the
   // following to increase the buffer size:
   client->setBufferSize(2048);
-  
+
 #else
 
   ethClientSSL.setCACert(rootCACertificate);
-  
+
   // Note - the default maximum packet size is 256 bytes. If the
   // combined length of clientId, username and password exceed this use the
   // following to increase the buffer size:
   client.setBufferSize(2048);
-  
+
 #endif
-  
+
 }
 
 
@@ -255,18 +256,18 @@ const char *pubData = data.c_str();
 
 #if USE_PTR
 
-void loop() 
+void loop()
 {
   static unsigned long now;
-  
-  if (!client->connected()) 
+
+  if (!client->connected())
   {
     reconnect();
   }
 
   // Sending Data
   now = millis();
-  
+
   if (now - lastMsg > MQTT_PUBLISH_INTERVAL_MS)
   {
     lastMsg = now;
@@ -279,24 +280,24 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client->loop();
 }
 
 #else
 
-void loop() 
+void loop()
 {
   static unsigned long now;
-  
-  if (!client.connected()) 
+
+  if (!client.connected())
   {
     reconnect();
   }
 
   // Sending Data
   now = millis();
-  
+
   if (now - lastMsg > MQTT_PUBLISH_INTERVAL_MS)
   {
     lastMsg = now;
@@ -309,7 +310,7 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client.loop();
 }
 

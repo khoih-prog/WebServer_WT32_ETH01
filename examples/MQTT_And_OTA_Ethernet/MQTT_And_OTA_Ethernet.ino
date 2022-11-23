@@ -1,5 +1,5 @@
 /****************************************************************************************************************************
-  MQTT_And_OTA_Ethernet.ino 
+  MQTT_And_OTA_Ethernet.ino
     - Dead simple MQTT Client for Ethernet shields
     - Allows for new sketch compiled bin to be uploaded over HTTP using AsyncElegantOTA
 
@@ -18,7 +18,7 @@
     reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
     achieve the same result without blocking the main loop.
 
-  To use OTA:   
+  To use OTA:
     - Take note of what IP the board is on, you should be able to see this both in the serial monitor and in the MQTT messages when the board first starts.
     - In the Arduino IDE, go to Sketch > Export compiled binary
     - You should now see a build folder next to the MQTT_And_OTA_Ethernet.ino file
@@ -61,6 +61,7 @@ WiFiClient    ethClient;
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -79,13 +80,14 @@ void setup()
   // ETH.config(myIP, myGW, mySN, myDNS);
 
   WT32_ETH01_waitForConnect();
-  
+
   // Note - the default maximum packet size is 128 bytes. If the
   // combined length of clientId, username and password exceed this use the
   // following to increase the buffer size:
   // client.setBufferSize(255);
 
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest * request)
+  {
     request->send(200, "text/plain", "Hi! I am ESP32.");
   });
 
@@ -97,17 +99,17 @@ void setup()
   Serial.println();
 }
 
-void callback(char* topic, byte* payload, unsigned int length) 
+void callback(char* topic, byte* payload, unsigned int length)
 {
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  
-  for (unsigned int i = 0; i < length; i++) 
+
+  for (unsigned int i = 0; i < length; i++)
   {
     Serial.print((char)payload[i]);
   }
-  
+
   Serial.println();
 }
 
@@ -125,7 +127,7 @@ void reconnect()
     if (client.connect("arduino", mqttBrokerUser, mqttBrokerPass))
     {
       Serial.println("...connected");
-      
+
       // Once connected, publish an announcement...
       String data = "Hello from MQTTClient_SSL on " + String(BOARD_NAME) + ", at IPv4: " + ETH.localIP().toString();
 
@@ -134,7 +136,7 @@ void reconnect()
       //Serial.println("Published connection message successfully!");
       //Serial.print("Subcribed to: ");
       //Serial.println(subTopic);
-      
+
       // ... and resubscribe
       client.subscribe(subTopic);
       // for loopback testing
@@ -156,21 +158,21 @@ void reconnect()
 
 unsigned long lastMsg = 0;
 
-void loop() 
+void loop()
 {
   String data         = "Hello from v00 MQTT_And_OTA_Ethernet on: " + String(BOARD_NAME) + " with " + String(SHIELD_TYPE);
   const char *pubData = data.c_str();
 
   static unsigned long now;
- 
-  if (!client.connected()) 
+
+  if (!client.connected())
   {
     reconnect();
   }
 
   // Sending Data
   now = millis();
-  
+
   if (now - lastMsg > MQTT_PUBLISH_INTERVAL_MS)
   {
     lastMsg = now;
@@ -183,6 +185,6 @@ void loop()
     Serial.print("Message Send : " + String(TOPIC) + " => ");
     Serial.println(data);
   }
-  
+
   client.loop();
 }

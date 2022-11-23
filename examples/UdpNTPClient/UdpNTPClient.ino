@@ -1,6 +1,6 @@
 /****************************************************************************************************************************
   UdpNTPClient.ino - Simple Arduino web server sample for ESP8266 AT-command shield
-  
+
   For Ethernet shields using WT32_ETH01 (ESP32 + LAN8720)
 
   WebServer_WT32_ETH01 is a library for the Ethernet LAN8720 in WT32_ETH01 to run WebServer
@@ -71,6 +71,7 @@ void sendNTPpacket(char *ntpSrv)
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
@@ -83,7 +84,7 @@ void setup()
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);
@@ -93,7 +94,7 @@ void setup()
   ETH.config(myIP, myGW, mySN, myDNS);
 
   WT32_ETH01_waitForConnect();
-  
+
   Udp.begin(localPort);
 }
 
@@ -103,6 +104,7 @@ void loop()
 
   // wait for a reply for UDP_TIMEOUT miliseconds
   unsigned long startMs = millis();
+
   while (!Udp.available() && (millis() - startMs) < UDP_TIMEOUT) {}
 
   // if there's data available, read a packet
@@ -130,7 +132,7 @@ void loop()
     // combine the four bytes (two words) into a long integer
     // this is NTP time (seconds since Jan 1 1900):
     unsigned long secsSince1900 = highWord << 16 | lowWord;
-    
+
     Serial.print(F("Seconds since Jan 1 1900 = "));
     Serial.println(secsSince1900);
 
@@ -147,25 +149,25 @@ void loop()
     Serial.print(F("The UTC time is "));       // UTC is the time at Greenwich Meridian (GMT)
     Serial.print((epoch  % 86400L) / 3600); // print the hour (86400 equals secs per day)
     Serial.print(F(":"));
-    
-    if (((epoch % 3600) / 60) < 10) 
+
+    if (((epoch % 3600) / 60) < 10)
     {
       // In the first 10 minutes of each hour, we'll want a leading '0'
       Serial.print(F("0"));
     }
-    
+
     Serial.print((epoch  % 3600) / 60); // print the minute (3600 equals secs per minute)
     Serial.print(F(":"));
-    
-    if ((epoch % 60) < 10) 
+
+    if ((epoch % 60) < 10)
     {
       // In the first 10 seconds of each minute, we'll want a leading '0'
       Serial.print(F("0"));
     }
-    
+
     Serial.println(epoch % 60); // print the second
   }
-  
+
   // wait ten seconds before asking for the time again
   delay(10000);
 }

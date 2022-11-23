@@ -59,10 +59,10 @@
     #if (_WIFIMGR_LOGLEVEL_ > 3)
       #warning Using ESP32 Core 1.0.6 or 2.0.0+
     #endif
-    
+
     // The library has been merged into esp32 core from release 1.0.6
     #include <LittleFS.h>       // https://github.com/espressif/arduino-esp32/tree/master/libraries/LittleFS
-    
+
     FS* filesystem =      &LittleFS;
     #define FileFS        LittleFS
     #define FS_Name       "LittleFS"
@@ -70,15 +70,15 @@
     #if (_WIFIMGR_LOGLEVEL_ > 3)
       #warning Using ESP32 Core 1.0.5-. You must install LITTLEFS library
     #endif
-    
+
     // The library has been merged into esp32 core from release 1.0.6
     #include <LITTLEFS.h>       // https://github.com/lorol/LITTLEFS
-    
+
     FS* filesystem =      &LITTLEFS;
     #define FileFS        LITTLEFS
     #define FS_Name       "LittleFS"
   #endif
-  
+
 #elif USE_SPIFFS
   #include <SPIFFS.h>
   FS* filesystem =      &SPIFFS;
@@ -182,12 +182,14 @@ String getContentType(String filename)
   {
     return "application/x-gzip";
   }
+
   return "text/plain";
 }
 
 bool handleFileRead(String path)
 {
   Serial.println("handleFileRead: " + path);
+
   if (path.endsWith("/"))
   {
     path += "index.htm";
@@ -208,6 +210,7 @@ bool handleFileRead(String path)
     file.close();
     return true;
   }
+
   return false;
 }
 
@@ -289,7 +292,8 @@ void handleFileUpload()
       filename = "/" + filename;
     }
 
-    Serial.print(F("handleFileUpload Name: ")); Serial.println(filename);
+    Serial.print(F("handleFileUpload Name: "));
+    Serial.println(filename);
     fsUploadFile = filesystem->open(filename, "w");
     filename.clear();
   }
@@ -309,7 +313,8 @@ void handleFileUpload()
       fsUploadFile.close();
     }
 
-    Serial.print(F("handleFileUpload Size: ")); Serial.println(upload.totalSize);
+    Serial.print(F("handleFileUpload Size: "));
+    Serial.println(upload.totalSize);
   }
 }
 
@@ -322,6 +327,7 @@ void initFS()
   {
     Serial.println(F("SPIFFS/LittleFS failed! Formatting."));
 #else
+
   if (!FileFS.begin())
   {
     FileFS.format();
@@ -388,20 +394,22 @@ void initWebserver()
 void setup()
 {
   Serial.begin(115200);
+
   while (!Serial);
 
   // Using this if Serial debugging is not necessary or not using Serial port
   //while (!Serial && (millis() < 3000));
 
   Serial.print("\nStarting serveStaticLoadFile demoing 'serveStatic' function on " + String(ARDUINO_BOARD));
-  Serial.print(" using "); Serial.println(FS_Name);
+  Serial.print(" using ");
+  Serial.println(FS_Name);
   Serial.println("With " + String(SHIELD_TYPE));
   Serial.println(WEBSERVER_WT32_ETH01_VERSION);
 
   // To be called before ETH.begin()
   WT32_ETH01_onEvent();
 
-  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO, 
+  //bool begin(uint8_t phy_addr=ETH_PHY_ADDR, int power=ETH_PHY_POWER, int mdc=ETH_PHY_MDC, int mdio=ETH_PHY_MDIO,
   //           eth_phy_type_t type=ETH_PHY_TYPE, eth_clock_mode_t clk_mode=ETH_CLK_MODE);
   //ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER, ETH_PHY_MDC, ETH_PHY_MDIO, ETH_PHY_TYPE, ETH_CLK_MODE);
   ETH.begin(ETH_PHY_ADDR, ETH_PHY_POWER);

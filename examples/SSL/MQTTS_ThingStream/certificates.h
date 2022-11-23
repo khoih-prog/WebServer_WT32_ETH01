@@ -15,12 +15,12 @@
 
 #if USING_THINGSTREAM_IO
 
-// This is the root Certificate Authority that signed the server certifcate 
-// for the demo server mqtt.thingstream.io in this example.
-// To generate the Root CA Cert, use the following command (in Linux / Ubuntu)
-// $ openssl s_client -showcerts -connect mqtt.thingstream.io:8883
+  // This is the root Certificate Authority that signed the server certifcate
+  // for the demo server mqtt.thingstream.io in this example.
+  // To generate the Root CA Cert, use the following command (in Linux / Ubuntu)
+  // $ openssl s_client -showcerts -connect mqtt.thingstream.io:8883
 
-const char* rootCACertificate =
+  const char* rootCACertificate =
   "-----BEGIN CERTIFICATE-----\n" \
   "MIIESTCCAzGgAwIBAgITBn+UV4WH6Kx33rJTMlu8mYtWDTANBgkqhkiG9w0BAQsF\n" \
   "ADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6\n" \
@@ -49,12 +49,12 @@ const char* rootCACertificate =
 
 #else
 
-// This is the root Certificate Authority that signed the server certifcate 
-// for the demo server broker.emqx.io in this example.
-// To generate the Root CA Cert, use the following command (in Linux / Ubuntu)
-// $ openssl s_client -showcerts -connect broker.emqx.io:8883
+  // This is the root Certificate Authority that signed the server certifcate
+  // for the demo server broker.emqx.io in this example.
+  // To generate the Root CA Cert, use the following command (in Linux / Ubuntu)
+  // $ openssl s_client -showcerts -connect broker.emqx.io:8883
 
-const char* rootCACertificate =
+  const char* rootCACertificate =
   "-----BEGIN CERTIFICATE-----\n" \
   "MIIGEzCCA/ugAwIBAgIQfVtRJrR2uhHbdBYLvFMNpzANBgkqhkiG9w0BAQwFADCB\n" \
   "iDELMAkGA1UEBhMCVVMxEzARBgNVBAgTCk5ldyBKZXJzZXkxFDASBgNVBAcTC0pl\n" \
@@ -92,5 +92,5 @@ const char* rootCACertificate =
   "-----END CERTIFICATE-----\n";
 
 #endif    // USING_THINGSTREAM_IO
-  
+
 #endif /* ifndef _CERTIFICATES_H_ */

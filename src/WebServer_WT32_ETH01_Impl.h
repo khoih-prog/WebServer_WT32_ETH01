@@ -11,7 +11,7 @@
   Original author:
   @file       Esp8266WebServer.h
   @author     Ivan Grokhotkov
-  
+
   Version: 1.5.1
 
   Version Modified By   Date      Comments
@@ -49,13 +49,13 @@ void WT32_ETH01_waitForConnect()
 bool WT32_ETH01_isConnected()
 {
   return WT32_ETH01_eth_connected;
-}  
+}
 
 void WT32_ETH01_event(WiFiEvent_t event)
 {
   switch (event)
   {
-//#if USING_CORE_ESP32_CORE_V200_PLUS
+      //#if USING_CORE_ESP32_CORE_V200_PLUS
 #if ( ( defined(ESP_ARDUINO_VERSION_MAJOR) && (ESP_ARDUINO_VERSION_MAJOR >= 2) ) && ( ARDUINO_ESP32_GIT_VER != 0x46d5afb1 ) )
     // For breaking core v2.0.0
     // Why so strange to define a breaking enum arduino_event_id_t in WiFiGeneric.h
@@ -66,6 +66,7 @@ void WT32_ETH01_event(WiFiEvent_t event)
       //set eth hostname here
       ETH.setHostname("WT32-ETH01");
       break;
+
     case ARDUINO_EVENT_ETH_CONNECTED:
       ET_LOG(F("ETH Connected"));
       break;
@@ -83,7 +84,7 @@ void WT32_ETH01_event(WiFiEvent_t event)
         {
           ET_LOG0(F("HALF_DUPLEX, "));
         }
-        
+
         ET_LOG1(ETH.linkSpeed(), F("Mbps"));
 
         WT32_ETH01_eth_connected = true;
@@ -100,18 +101,20 @@ void WT32_ETH01_event(WiFiEvent_t event)
       ET_LOG("\nETH Stopped");
       WT32_ETH01_eth_connected = false;
       break;
-      
+
 #else
+
     // For old core v1.0.6-
     // Core v2.0.0 defines a stupid enum arduino_event_id_t, breaking any code for WT32_ETH01 written for previous core
     // Why so strange to define a breaking enum arduino_event_id_t in WiFiGeneric.h
     // compared to the old system_event_id_t, now in tools/sdk/esp32/include/esp_event/include/esp_event_legacy.h
-    // You can preserve the old enum order and just adding new items to do no harm   
+    // You can preserve the old enum order and just adding new items to do no harm
     case SYSTEM_EVENT_ETH_START:
       ET_LOG(F("\nETH Started"));
       //set eth hostname here
       ETH.setHostname("WT32-ETH01");
       break;
+
     case SYSTEM_EVENT_ETH_CONNECTED:
       ET_LOG(F("ETH Connected"));
       break;
@@ -129,7 +132,7 @@ void WT32_ETH01_event(WiFiEvent_t event)
         {
           ET_LOG0(F("HALF_DUPLEX, "));
         }
-        
+
         ET_LOG1(ETH.linkSpeed(), F("Mbps"));
 
         WT32_ETH01_eth_connected = true;

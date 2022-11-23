@@ -5,8 +5,11 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](#Contributing)
 [![GitHub issues](https://img.shields.io/github/issues/khoih-prog/WebServer_WT32_ETH01.svg)](http://github.com/khoih-prog/WebServer_WT32_ETH01/issues)
 
+
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Donate to my libraries using BuyMeACoffee" style="height: 50px !important;width: 181px !important;" ></a>
 <a href="https://www.buymeacoffee.com/khoihprog6" title="Donate to my libraries using BuyMeACoffee"><img src="https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange.svg?logo=buy-me-a-coffee&logoColor=FFDD00" style="height: 20px !important;width: 200px !important;" ></a>
+<a href="https://profile-counter.glitch.me/khoih-prog/count.svg" title="Total khoih-prog Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog/count.svg" style="height: 30px;width: 200px;"></a>
+<a href="https://profile-counter.glitch.me/khoih-prog-WebServer_WT32_ETH01/count.svg" title="WebServer_WT32_ETH01 Visitor count"><img src="https://profile-counter.glitch.me/khoih-prog-WebServer_WT32_ETH01/count.svg" style="height: 30px;width: 200px;"></a>
 
 ---
 ---
@@ -113,22 +116,22 @@ Please have a look at [HOWTO Fix `Multiple Definitions` Linker Error](#howto-fix
 
 #### Important notes
 
-ESP32 Core v2.0.0+ introduces new enum breaking almost all `WT32_ETH01` codes written for core v1.0.6-.
+ESP32 Core `v2.0.0+` introduces new enum breaking almost all `WT32_ETH01` codes written for core `v1.0.6-`.
 
 It's really strange to define a breaking enum `arduino_event_id_t` in [**WiFiGeneric.h**#L36-L78](https://github.com/espressif/arduino-esp32/blob/master/libraries/WiFi/src/WiFiGeneric.h#L36-L78), compared to the old `system_event_id_t`, now placed in [**esp_event_legacy.h**#L29-L63](https://github.com/espressif/arduino-esp32/blob/master/tools/sdk/esp32/include/esp_event/include/esp_event_legacy.h#L29-L63)
 
 It's better to preserve the old enum order and just adding new items **to do no harm to pre-2.0.0 codes**
 
-- Releases v1.2.0- to be used for ESP32 core v1.0.6- only
-- Releases v1.3.0 can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Default is using core v2.0.0+**
+- Releases `v1.2.0-` to be used for ESP32 core `v1.0.6-` only
+- Releases `v1.3.0` can be used for either ESP32 core `v2.0.0+` or `v1.0.6-`. **Default is using core `v2.0.0+`**
 
 To use with core v1.0.6-, just define in your sketch
 
-```
+```cpp
 #define USING_CORE_ESP32_CORE_V200_PLUS       false
 ```
 
-- Releases v1.4.0+ can be used for either ESP32 core v2.0.0+ or v1.0.6-. **Autodetect core**
+- Releases `v1.4.0+` can be used for either ESP32 core `v2.0.0+` or `v1.0.6-`. **Autodetect core**
 
 
 #### Features
@@ -164,8 +167,8 @@ This [**WebServer_WT32_ETH01** library](https://github.com/khoih-prog/WebServer_
 ## Prerequisites
 
  1. [`Arduino IDE 1.8.19+` for Arduino](https://github.com/arduino/Arduino). [![GitHub release](https://img.shields.io/github/release/arduino/Arduino.svg)](https://github.com/arduino/Arduino/releases/latest)
- 2. [`ESP32 Core 2.0.4+`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.3.0+. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
- 3. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release v1.2.0-
+ 2. [`ESP32 Core 2.0.5+`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release `v1.3.0+`. [![Latest release](https://img.shields.io/github/release/espressif/arduino-esp32.svg)](https://github.com/espressif/arduino-esp32/releases/latest/)
+ 3. [`ESP32 Core 1.0.6-`](https://github.com/espressif/arduino-esp32) for ESP32-based WT32_ETH01 boards using release `v1.2.0-`
 
 ---
 ---
@@ -213,14 +216,14 @@ The current library implementation, using `xyz-Impl.h` instead of standard `xyz.
 
 You can include this `.hpp` file
 
-```
+```cpp
 // Can be included as many times as necessary, without `Multiple Definitions` Linker Error
 #include "WebServer_WT32_ETH01.hpp"     //https://github.com/khoih-prog/WebServer_WT32_ETH01
 ```
 
 in many files. But be sure to use the following `.h` file **in just 1 `.h`, `.cpp` or `.ino` file**, which must **not be included in any other file**, to avoid `Multiple Definitions` Linker Error
 
-```
+```cpp
 // To be included only in main(), .ino with setup() to avoid `Multiple Definitions` Linker Error
 #include "WebServer_WT32_ETH01.h"           //https://github.com/khoih-prog/WebServer_WT32_ETH01
 ```
@@ -488,10 +491,10 @@ https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/49acabe4762e935fc6c13215
 The following are debug terminal output and screen shot when running example [AdvancedWebServer](examples/AdvancedWebServer) on ESP32_DEV with ETH_PHY_LAN8720 (WT32_ETH01)
 
 <p align="center">
-    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/pics/AdvancedWebServer.png">
+    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/raw/main/pics/AdvancedWebServer.png">
 </p>
 
-```
+```cpp
 Starting AdvancedWebServer on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 
@@ -549,7 +552,7 @@ handleFileRead: /CanadaFlag_1.png
 and the screen shot of the WebServer
 
 <p align="center">
-    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/blob/main/pics/ESP32_FS_EthernetWebServer.png">
+    <img src="https://github.com/khoih-prog/WebServer_WT32_ETH01/raw/main/pics/ESP32_FS_EthernetWebServer.png">
 </p>
 
 ---
@@ -559,7 +562,7 @@ and the screen shot of the WebServer
 The terminal output of **WT32_ETH01** running [MQTT_ThingStream example](examples/MQTT_ThingStream)
 
 
-```
+```cpp
 Starting MQTT_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -583,7 +586,7 @@ MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTT_ThingStream on
 The terminal output of **WT32_ETH01** running [MQTTClient_Auth example](examples/MQTTClient_Auth)
 
 
-```
+```cpp
 Starting MQTTClient_Auth on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -600,7 +603,7 @@ Message arrived [MQTT_Pub] Hello from MQTTClient_Auth on WT32-ETH01 with ETH_PHY
 
 The terminal output of **WT32_ETH01** running [MQTTClient_Basic example](examples/MQTTClient_Basic)
 
-```
+```cpp
 Starting MQTTClient_Basic on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -620,7 +623,7 @@ Message arrived [MQTT_Pub] Hello from MQTTClient_Basic on WT32-ETH01 with ETH_PH
 
 The terminal output of **WT32_ETH01** running [WebClient example](examples/WebClient)
 
-```
+```cpp
 Starting WebClient on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -688,7 +691,7 @@ Disconnecting from server...
 
 The terminal output of **WT32_ETH01** running [UdpNTPClient example](examples/UdpNTPClient)
 
-```
+```cpp
 Starting UdpNTPClient on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH Started
@@ -726,7 +729,7 @@ The UTC time is 5:54:46
 The terminal output of **WT32_ETH01** running [BasicHttpClient example](examples/HTTPClient/BasicHttpClient)
 
 
-```
+```cpp
 Starting BasicHttpClient on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -788,7 +791,7 @@ ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
 The terminal output of **WT32_ETH01** running [BasicHttpsClient example](examples/HTTPClient/BasicHttpsClient)
 
 
-```
+```cpp
 Starting BasicHttpsClient on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -833,7 +836,7 @@ Waiting 10s before the next round...
 The terminal output of **WT32_ETH01** running [WebClientMulti_SSL example](examples/SSL/WebClientMulti_SSL)
 
 
-```
+```cpp
 Starting WebClientMulti_SSL on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -947,7 +950,7 @@ Disconnecting.
 The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Complex example](examples/SSL/MQTTClient_SSL_Complex)
 
 
-```
+```cpp
 Starting MQTTClient_SSL_Complex on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -967,7 +970,7 @@ Message arrived [MQTT_Pub] Hello from MQTTClient_SSL_Complex on WT32-ETH01, mill
 The terminal output of **WT32_ETH01** running [MQTTS_ThingStream example](examples/SSL/MQTTS_ThingStream)
 
 
-```
+```cpp
 Starting MQTTS_ThingStream on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -993,7 +996,7 @@ MQTT Message receive [esp32-sniffer/12345678/ble] Hello from MQTTS_ThingStream o
 The terminal output of **WT32_ETH01** running [MQTTClient_SSL example](examples/SSL/MQTTClient_SSL)
 
 
-```
+```cpp
 Starting MQTTClient_SSL on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -1018,7 +1021,7 @@ Message arrived [MQTT_Pub] Hello from MQTTClient_SSL on WT32-ETH01
 
 The terminal output of **WT32_ETH01** running [MQTTClient_SSL_Auth example](examples/SSL/MQTTClient_SSL_Auth)
 
-```
+```cpp
 Starting MQTTClient_SSL_Auth on ESP32_DEV with ETH_PHY_LAN8720
 WebServer_WT32_ETH01 v1.5.1 for core v2.0.0+
 ETH MAC: A8:03:2A:A1:61:73, IPv4: 192.168.2.232, FULL_DUPLEX, 100Mbps
@@ -1126,6 +1129,6 @@ If you want to contribute to this project:
 
 ## Copyright
 
-Copyright 2021- Khoi Hoang
+Copyright (c) 2021- Khoi Hoang
 
 
